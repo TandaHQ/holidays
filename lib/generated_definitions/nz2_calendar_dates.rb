@@ -18,7 +18,8 @@ module Holidays
             {:mday => 2, :name => "Day after New Year's Day", :regions => [:nz2_calendar_dates]}],
       2 => [{:mday => 6, :name => "Waitangi Day", :regions => [:nz2_calendar_dates]}],
       4 => [{:mday => 25, :name => "ANZAC Day", :regions => [:nz2_calendar_dates]}],
-      6 => [{:wday => 1, :week => 1, :name => "Queen's Birthday", :regions => [:nz2_calendar_dates]}],
+      6 => [{:wday => 1, :week => 1, :name => "Queen's Birthday", :regions => [:nz2_calendar_dates]},
+            {:function => "matariki_holiday(year)", :function_arguments => [:year], :name => "Matariki Holiday", :regions => [:nz2_calendar_dates]}],
       10 => [{:wday => 1, :week => 4, :name => "Labour Day", :regions => [:nz2_calendar_dates]}],
       12 => [{:mday => 25, :name => "Christmas Day", :regions => [:nz2_calendar_dates]},
             {:mday => 26, :name => "Boxing Day", :regions => [:nz2_calendar_dates]}]
@@ -27,7 +28,31 @@ module Holidays
 
     def self.custom_methods
       {
-        
+        "matariki_holiday(year)" => Proc.new { |year|
+case year
+when 2022
+  Date.civil(2022, 6, 4, 5)
+when 2023
+  Date.civil(2023, 7, 3, 5)
+when 2024
+  Date.civil(2024, 6, 5, 5)
+when 2025
+  Date.civil(2025, 6, 4, 5)
+when 2026
+  Date.civil(2026, 7, 2, 5)
+when 2027
+  Date.civil(2027, 6, 4, 5)
+when 2028
+  Date.civil(2028, 7, 3, 5)
+when 2029
+  Date.civil(2029, 7, 2, 5)
+when 2030
+  Date.civil(2030, 6, 4, 5)
+when 2031
+  Date.civil(2031, 7, 2, 5)
+end},
+
+
       }
     end
   end
