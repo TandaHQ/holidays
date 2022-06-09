@@ -16,12 +16,11 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(/^test/)
   gem.require_paths = ['lib']
   gem.licenses      = ['MIT']
-  gem.required_ruby_version = '~> 2.2'
+  gem.required_ruby_version = '>= 2.4'
   gem.add_development_dependency 'bundler'
-  gem.add_development_dependency 'rake', '~> 12.0'
-  gem.add_development_dependency 'simplecov', '~> 0.15'
-  gem.add_development_dependency 'simplecov-rcov', '~> 0.2'
-  gem.add_development_dependency 'test-unit', '~> 3.2'
-  gem.add_development_dependency 'mocha', '~> 1.0'
-  gem.add_development_dependency 'pry', '~> 0.10'
+  gem.add_development_dependency 'rake', '~> 12'
+  gem.add_development_dependency 'simplecov', '~> 0.16'
+  gem.add_development_dependency 'test-unit', '~> 3'
+  gem.add_development_dependency 'mocha', '~> 1'
+  gem.add_development_dependency 'pry', '~> 0.12'
 end
