@@ -431,7 +431,7 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_nil (Holidays.on(Date.civil(2022, 12, 25), [:gb], [:informal])[0] || {})[:name]
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2022, 12, 27), [:gb], [:informal])[0] || {})[:name]
+    assert_equal "Christmas Day (substitute day)", (Holidays.on(Date.civil(2022, 12, 27), [:gb], [:informal])[0] || {})[:name]
 
     assert_equal "Boxing Day", (Holidays.on(Date.civil(2008, 12, 26), [:gb], [:informal])[0] || {})[:name]
 
