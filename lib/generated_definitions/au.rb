@@ -17,12 +17,14 @@ module Holidays
             {:function => "easter(year)", :function_arguments => [:year], :name => "Easter Sunday", :regions => [:au_nsw, :au_vic]},
             {:function => "easter(year)", :function_arguments => [:year],  :year_ranges => [{:after => 2017}],:name => "Easter Sunday", :regions => [:au_qld, :au_act]},
             {:function => "easter(year)", :function_arguments => [:year],  :year_ranges => [{:after => 2021}],:name => "Easter Sunday", :regions => [:au_wa]},
+            {:function => "easter(year)", :function_arguments => [:year],  :year_ranges => [{:after => 2022}],:name => "Easter Sunday", :regions => [:au_nt]},
             {:function => "easter(year)", :function_arguments => [:year],  :year_ranges => [{:limited => 2022}],:name => "Easter Sunday", :regions => [:au_nt]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:au]},
             {:function => "afl_grand_final(year)", :function_arguments => [:year], :name => "Friday before the AFL Grand Final", :regions => [:au_vic]}],
       1 => [{:mday => 1, :name => "New Year's Day", :regions => [:au_nsw, :au_vic, :au_act, :au_wa, :au_nt, :au_qld]},
-            {:mday => 1, :function => "to_monday_if_weekend(date)", :function_arguments => [:date], :name => "New Year's Day", :regions => [:au_tas, :au_sa]},
-            {:mday => 1, :function => "additional_holiday_on_monday_if_on_weekend(date)", :function_arguments => [:date], :name => "Additional public holiday for New Year's Day", :regions => [:au_nsw, :au_vic, :au_act, :au_wa, :au_nt, :au_qld]},
+            {:mday => 1,  :year_ranges => [{:after => 2023}],:name => "New Year's Day", :regions => [:au_sa]},
+            {:mday => 1, :function => "to_monday_if_weekend(date)", :function_arguments => [:date], :name => "New Year's Day", :regions => [:au_tas]},
+            {:mday => 1, :function => "additional_holiday_on_monday_if_on_weekend(date)", :function_arguments => [:date], :name => "Additional public holiday for New Year's Day", :regions => [:au_nsw, :au_vic, :au_act, :au_wa, :au_nt, :au_qld, :au_sa]},
             {:mday => 26, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Australia Day", :regions => [:au]}],
       2 => [{:wday => 1, :week => 2, :name => "Royal Hobart Regatta", :regions => [:au_tas_south]}],
       3 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:au_wa]},
@@ -45,7 +47,8 @@ module Holidays
       8 => [{:wday => 3, :week => -3, :name => "Ekka", :regions => [:au_qld_brisbane]},
             {:wday => 1, :week => 1, :name => "Picnic Day", :regions => [:au_nt]}],
       9 => [{:wday => 1, :week => -1, :name => "Queen's Birthday", :regions => [:au_wa]},
-            {:wday => 1, :week => -1,  :year_ranges => [{:before => 2017}],:name => "Family & Community Day", :regions => [:au_act]}],
+            {:wday => 1, :week => -1,  :year_ranges => [{:before => 2017}],:name => "Family & Community Day", :regions => [:au_act]},
+            {:mday => 22,  :year_ranges => [{:limited => 2022}],:name => "Day of mourning for Queen Elizabeth II", :regions => [:au, :au_nsw, :au_act, :au_sa, :au_tas, :au_vic, :au_wa, :au_nt, :au_qld]}],
       10 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:au_act, :au_nsw, :au_sa]},
             {:function => "qld_labour_day_october(year)", :function_arguments => [:year], :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Labour Day", :regions => [:au_qld]},
             {:function => "qld_queens_bday_october(year)", :function_arguments => [:year], :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Queen's Birthday", :regions => [:au_qld]},
@@ -84,6 +87,8 @@ when 2020
   Date.civil(2020, 10, 23)
 when 2021
   Date.civil(2021, 9, 24)
+when 2022
+  Date.civil(2022, 9, 23)
 end
 },
 
