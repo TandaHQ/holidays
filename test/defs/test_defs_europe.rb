@@ -589,6 +589,8 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "St Brigid's Day", (Holidays.on(Date.civil(2023, 2, 6), [:ie])[0] || {})[:name]
 
+    assert_equal "St Brigid's Day", (Holidays.on(Date.civil(2025, 2, 1), [:ie])[0] || {})[:name]
+
     assert_equal "St. Patrick's Day", (Holidays.on(Date.civil(2008, 3, 17), [:ie])[0] || {})[:name]
 
     assert_equal "Easter Monday", (Holidays.on(Date.civil(2008, 3, 24), [:ie])[0] || {})[:name]
