@@ -23,7 +23,7 @@ module Holidays
       2 => [{:mday => 14, :type => :informal, :name => "Valentine's Day", :regions => [:sg]},
             {:mday => 15, :type => :informal, :name => "Total Defence Day", :regions => [:sg]}],
       5 => [{:mday => 1, :name => "Labour Day", :regions => [:sg]}],
-      8 => [{:mday => 9, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "National Day", :regions => [:sg]}],
+      8 => [{:mday => 9, :name => "National Day", :regions => [:sg]}],
       12 => [{:mday => 25, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:sg]}]
       }
     end
@@ -121,7 +121,7 @@ month_day = case year
   when 2024
     [06, 17]
   when 2025
-    [06, 6]
+    [06, 7]
   when 2026
     [05, 27]
   end
