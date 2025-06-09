@@ -13,7 +13,6 @@ module Holidays
     def self.holidays_by_month
       {
               0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -49, :type => :informal, :name => "Fastelavn", :regions => [:dk]},
-            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -7, :type => :informal, :name => "Palmesøndag", :regions => [:dk]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -3, :name => "Skærtorsdag", :regions => [:dk]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Langfredag", :regions => [:dk]},
             {:function => "easter(year)", :function_arguments => [:year], :name => "Påskedag", :regions => [:dk]},
@@ -34,7 +33,6 @@ module Holidays
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "Hvítasunnudagur", :regions => [:is]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Annar í hvítasunnu", :regions => [:is]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -49, :type => :informal, :name => "Fastelavn", :regions => [:no]},
-            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -7, :name => "Palmesøndag", :regions => [:no]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -3, :name => "Skjærtorsdag", :regions => [:no]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Langfredag", :regions => [:no]},
             {:function => "easter(year)", :function_arguments => [:year], :name => "1. påskedag", :regions => [:no]},
