@@ -7,15 +7,17 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class AuDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_au
-    assert_equal "ANZAC Day", (Holidays.on(Date.civil(2020, 4, 25), [:au_act])[0] || {})[:name]
-
-    assert_equal "ANZAC Day", (Holidays.on(Date.civil(2020, 4, 25), [:au_qld])[0] || {})[:name]
+    assert_equal "ANZAC Day", (Holidays.on(Date.civil(2020, 4, 25), [:au_nsw, :au_act, :au_vic, :au_tas, :au_sa, :au_wa, :au_nt, :au_qld])[0] || {})[:name]
+assert_equal "ANZAC Day", (Holidays.on(Date.civil(2021, 4, 25), [:au_nsw, :au_act, :au_vic, :au_tas, :au_sa, :au_wa, :au_nt, :au_qld])[0] || {})[:name]
+assert_equal "ANZAC Day", (Holidays.on(Date.civil(2022, 4, 25), [:au_nsw, :au_act, :au_vic, :au_tas, :au_sa, :au_wa, :au_nt, :au_qld])[0] || {})[:name]
+assert_equal "ANZAC Day", (Holidays.on(Date.civil(2023, 4, 25), [:au_nsw, :au_act, :au_vic, :au_tas, :au_sa, :au_wa, :au_nt, :au_qld])[0] || {})[:name]
+assert_equal "ANZAC Day", (Holidays.on(Date.civil(2024, 4, 25), [:au_nsw, :au_act, :au_vic, :au_tas, :au_sa, :au_wa, :au_nt, :au_qld])[0] || {})[:name]
+assert_equal "ANZAC Day", (Holidays.on(Date.civil(2025, 4, 25), [:au_nsw, :au_act, :au_vic, :au_tas, :au_sa, :au_wa, :au_nt, :au_qld])[0] || {})[:name]
+assert_equal "ANZAC Day", (Holidays.on(Date.civil(2026, 4, 25), [:au_nsw, :au_act, :au_vic, :au_tas, :au_sa, :au_wa, :au_nt, :au_qld])[0] || {})[:name]
+assert_equal "ANZAC Day", (Holidays.on(Date.civil(2027, 4, 25), [:au_nsw, :au_act, :au_vic, :au_tas, :au_sa, :au_wa, :au_nt, :au_qld])[0] || {})[:name]
 
     assert_equal "Additional public holiday for ANZAC Day", (Holidays.on(Date.civil(2021, 4, 26), [:au_wa])[0] || {})[:name]
-
-    assert_equal "ANZAC Day", (Holidays.on(Date.civil(2026, 4, 25), [:au_nsw, :au_act, :au_vic, :au_tas, :au_sa, :au_wa, :au_nt, :au_qld])[0] || {})[:name]
-
-    assert_equal "Additional public holiday for ANZAC Day", (Holidays.on(Date.civil(2026, 4, 27), [:au_wa])[0] || {})[:name]
+assert_equal "Additional public holiday for ANZAC Day", (Holidays.on(Date.civil(2026, 4, 27), [:au_wa])[0] || {})[:name]
 
     assert_nil (Holidays.on(Date.civil(2026, 4, 27), [:au_nsw, :au_act, :au_vic, :au_tas, :au_sa, :au_nt, :au_qld])[0] || {})[:name]
 
@@ -25,7 +27,7 @@ class AuDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Boxing Day", (Holidays.on(Date.civil(2021, 12, 26), [:au_qld])[0] || {})[:name]
 
-    assert_equal "Additional public holiday for Boxing Day", (Holidays.on(Date.civil(2021, 12, 28), [:au_qld])[0] || {})[:name]
+    assert_equal "Additional public holiday Boxing Day", (Holidays.on(Date.civil(2021, 12, 28), [:au_qld])[0] || {})[:name]
 
     assert_equal "Labour Day", (Holidays.on(Date.civil(2013, 10, 7), [:au_qld])[0] || {})[:name]
 
