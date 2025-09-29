@@ -6,7 +6,7 @@ setup: update_defs
 generate:
 	bundle exec rake generate
 
-test:
+test: generate
 	bundle exec rake test
 
 console:
