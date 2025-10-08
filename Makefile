@@ -15,6 +15,9 @@ console:
 test_region:
 	bundle exec rake test_region $(REGION)
 
+test_au:
+	$(MAKE) test_region REGION=au
+
 build: clean
 	bundle exec gem build holidays.gemspec
 
