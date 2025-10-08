@@ -7,27 +7,82 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class Be_nlDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_be_nl
-    assert_equal "Nieuwjaar", (Holidays.on(Date.civil(2007, 1, 1), [:be_nl], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2007, 1, 1), [:be_nl], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Nieuwjaar" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :be_nl
 
-    assert_equal "Pasen", (Holidays.on(Date.civil(2007, 4, 8), [:be_nl], [:informal])[0] || {})[:name]
 
-    assert_equal "Paasmaandag", (Holidays.on(Date.civil(2007, 4, 9), [:be_nl], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2007, 4, 8), [:be_nl], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Pasen" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 4, 8), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :be_nl
 
-    assert_equal "Feest van de Arbeid", (Holidays.on(Date.civil(2007, 5, 1), [:be_nl], [:informal])[0] || {})[:name]
 
-    assert_equal "O.H. Hemelvaart", (Holidays.on(Date.civil(2007, 5, 17), [:be_nl], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2007, 4, 9), [:be_nl], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Paasmaandag" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 4, 9), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :be_nl
 
-    assert_equal "Pinkstermaandag", (Holidays.on(Date.civil(2007, 5, 28), [:be_nl], [:informal])[0] || {})[:name]
 
-    assert_equal "Nationale Feestdag", (Holidays.on(Date.civil(2007, 7, 21), [:be_nl], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2007, 5, 1), [:be_nl], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Feest van de Arbeid" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 5, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :be_nl
 
-    assert_equal "O.L.V. Hemelvaart", (Holidays.on(Date.civil(2007, 8, 15), [:be_nl], [:informal])[0] || {})[:name]
 
-    assert_equal "Allerheiligen", (Holidays.on(Date.civil(2007, 11, 1), [:be_nl], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2007, 5, 17), [:be_nl], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "O.H. Hemelvaart" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 5, 17), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :be_nl
 
-    assert_equal "Wapenstilstand 1918", (Holidays.on(Date.civil(2007, 11, 11), [:be_nl], [:informal])[0] || {})[:name]
 
-    assert_equal "Kerstmis", (Holidays.on(Date.civil(2007, 12, 25), [:be_nl], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2007, 5, 28), [:be_nl], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Pinkstermaandag" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 5, 28), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :be_nl
+
+
+    holidays = Holidays.on(Date.civil(2007, 7, 21), [:be_nl], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Nationale Feestdag" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 7, 21), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :be_nl
+
+
+    holidays = Holidays.on(Date.civil(2007, 8, 15), [:be_nl], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "O.L.V. Hemelvaart" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 8, 15), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :be_nl
+
+
+    holidays = Holidays.on(Date.civil(2007, 11, 1), [:be_nl], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Allerheiligen" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 11, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :be_nl
+
+
+    holidays = Holidays.on(Date.civil(2007, 11, 11), [:be_nl], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Wapenstilstand 1918" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 11, 11), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :be_nl
+
+
+    holidays = Holidays.on(Date.civil(2007, 12, 25), [:be_nl], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Kerstmis" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :be_nl
+
 
   end
 end

@@ -7,41 +7,131 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class PeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_pe
-    assert_equal "Año Nuevo", (Holidays.on(Date.civil(2016, 1, 1), [:pe], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 1, 1), [:pe], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Año Nuevo" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :pe
 
-    assert_equal "Día de los Reyes Magos", (Holidays.on(Date.civil(2016, 1, 6), [:pe], [:informal])[0] || {})[:name]
 
-    assert_equal "Jueves Santo", (Holidays.on(Date.civil(2016, 3, 24), [:pe], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 1, 6), [:pe], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Día de los Reyes Magos" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 1, 6), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :pe
 
-    assert_equal "Viernes Santo", (Holidays.on(Date.civil(2016, 3, 25), [:pe], [:informal])[0] || {})[:name]
 
-    assert_equal "Pascua", (Holidays.on(Date.civil(2016, 3, 27), [:pe], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 3, 24), [:pe], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Jueves Santo" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 3, 24), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :pe
 
-    assert_equal "Día del Trabajador", (Holidays.on(Date.civil(2016, 5, 1), [:pe], [:informal])[0] || {})[:name]
 
-    assert_equal "Día de la Madre", (Holidays.on(Date.civil(2016, 5, 8), [:pe], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 3, 25), [:pe], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Viernes Santo" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 3, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :pe
 
-    assert_equal "Día de la Bandera", (Holidays.on(Date.civil(2016, 6, 7), [:pe], [:informal])[0] || {})[:name]
 
-    assert_equal "Día del Padre", (Holidays.on(Date.civil(2016, 6, 19), [:pe], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 3, 27), [:pe], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Pascua" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 3, 27), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :pe
 
-    assert_equal "San Pablo y San Pedro", (Holidays.on(Date.civil(2016, 6, 29), [:pe], [:informal])[0] || {})[:name]
 
-    assert_equal "Primer Día de la Independencia", (Holidays.on(Date.civil(2016, 7, 28), [:pe], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 5, 1), [:pe], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Día del Trabajador" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 5, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :pe
 
-    assert_equal "Segundo Día de la Independencia", (Holidays.on(Date.civil(2016, 7, 29), [:pe], [:informal])[0] || {})[:name]
 
-    assert_equal "Santa Rosa de Lima", (Holidays.on(Date.civil(2016, 8, 30), [:pe], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 5, 8), [:pe], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Día de la Madre" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 5, 8), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :pe
 
-    assert_equal "Día de las Fuerzas Armadas", (Holidays.on(Date.civil(2016, 9, 24), [:pe], [:informal])[0] || {})[:name]
 
-    assert_equal "Batalla de Angamos", (Holidays.on(Date.civil(2016, 10, 8), [:pe], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 6, 7), [:pe], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Día de la Bandera" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 6, 7), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :pe
 
-    assert_equal "Todos los Santos", (Holidays.on(Date.civil(2016, 11, 1), [:pe], [:informal])[0] || {})[:name]
 
-    assert_equal "Inmaculada Concepción", (Holidays.on(Date.civil(2016, 12, 8), [:pe], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 6, 19), [:pe], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Día del Padre" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 6, 19), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :pe
 
-    assert_equal "Navidad del Señor", (Holidays.on(Date.civil(2016, 12, 25), [:pe], [:informal])[0] || {})[:name]
+
+    holidays = Holidays.on(Date.civil(2016, 6, 29), [:pe], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "San Pablo y San Pedro" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 6, 29), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :pe
+
+
+    holidays = Holidays.on(Date.civil(2016, 7, 28), [:pe], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Primer Día de la Independencia" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 7, 28), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :pe
+
+
+    holidays = Holidays.on(Date.civil(2016, 7, 29), [:pe], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Segundo Día de la Independencia" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 7, 29), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :pe
+
+
+    holidays = Holidays.on(Date.civil(2016, 8, 30), [:pe], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Santa Rosa de Lima" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 8, 30), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :pe
+
+
+    holidays = Holidays.on(Date.civil(2016, 9, 24), [:pe], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Día de las Fuerzas Armadas" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 9, 24), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :pe
+
+
+    holidays = Holidays.on(Date.civil(2016, 10, 8), [:pe], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Batalla de Angamos" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 10, 8), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :pe
+
+
+    holidays = Holidays.on(Date.civil(2016, 11, 1), [:pe], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Todos los Santos" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 11, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :pe
+
+
+    holidays = Holidays.on(Date.civil(2016, 12, 8), [:pe], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Inmaculada Concepción" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 12, 8), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :pe
+
+
+    holidays = Holidays.on(Date.civil(2016, 12, 25), [:pe], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Navidad del Señor" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :pe
+
 
   end
 end

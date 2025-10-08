@@ -7,21 +7,61 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class TnDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_tn
-    assert_equal "Jour de l'an", (Holidays.on(Date.civil(2016, 1, 1), [:tn])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 1, 1), [:tn])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Jour de l'an" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tn
 
-    assert_equal "Fête de la Révolution et de la Jeunesse", (Holidays.on(Date.civil(2016, 1, 14), [:tn])[0] || {})[:name]
 
-    assert_equal "Fête de l'Indépendance", (Holidays.on(Date.civil(2016, 3, 20), [:tn])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 1, 14), [:tn])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Fête de la Révolution et de la Jeunesse" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 1, 14), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tn
 
-    assert_equal "Journée des Martyrs", (Holidays.on(Date.civil(2016, 4, 9), [:tn])[0] || {})[:name]
 
-    assert_equal "Fête du travail", (Holidays.on(Date.civil(2016, 5, 1), [:tn])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 3, 20), [:tn])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Fête de l'Indépendance" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 3, 20), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tn
 
-    assert_equal "Fête de la République", (Holidays.on(Date.civil(2016, 7, 25), [:tn])[0] || {})[:name]
 
-    assert_equal "Fête de la Femme et de la Famille", (Holidays.on(Date.civil(2016, 8, 13), [:tn])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 4, 9), [:tn])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Journée des Martyrs" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 4, 9), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tn
 
-    assert_equal "Fête de l'Évacuation", (Holidays.on(Date.civil(2016, 10, 15), [:tn])[0] || {})[:name]
+
+    holidays = Holidays.on(Date.civil(2016, 5, 1), [:tn])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Fête du travail" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 5, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tn
+
+
+    holidays = Holidays.on(Date.civil(2016, 7, 25), [:tn])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Fête de la République" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 7, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tn
+
+
+    holidays = Holidays.on(Date.civil(2016, 8, 13), [:tn])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Fête de la Femme et de la Famille" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 8, 13), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tn
+
+
+    holidays = Holidays.on(Date.civil(2016, 10, 15), [:tn])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Fête de l'Évacuation" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 10, 15), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tn
+
 
   end
 end

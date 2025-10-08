@@ -7,17 +7,47 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class MyDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_my
-    assert_equal "New Year's Day", (Holidays.on(Date.civil(2016, 1, 1), [:my], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 1, 1), [:my], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "New Year's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :my
 
-    assert_equal "Labour Day", (Holidays.on(Date.civil(2016, 5, 1), [:my], [:informal])[0] || {})[:name]
 
-    assert_equal "Agong's Birthday", (Holidays.on(Date.civil(2016, 6, 4), [:my], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 5, 1), [:my], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Labour Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 5, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :my
 
-    assert_equal "Independence Day", (Holidays.on(Date.civil(2016, 8, 31), [:my], [:informal])[0] || {})[:name]
 
-    assert_equal "Malaysia Day", (Holidays.on(Date.civil(2016, 9, 16), [:my], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 6, 4), [:my], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Agong's Birthday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 6, 4), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :my
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2016, 12, 25), [:my], [:informal])[0] || {})[:name]
+
+    holidays = Holidays.on(Date.civil(2016, 8, 31), [:my], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Independence Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 8, 31), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :my
+
+
+    holidays = Holidays.on(Date.civil(2016, 9, 16), [:my], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Malaysia Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 9, 16), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :my
+
+
+    holidays = Holidays.on(Date.civil(2016, 12, 25), [:my], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Christmas Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :my
+
 
   end
 end

@@ -7,47 +7,187 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class TrDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_tr
-    assert_equal "Yılbaşı", (Holidays.on(Date.civil(2017, 1, 1), [:tr])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 1, 1), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Yılbaşı" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
 
-    assert_equal "Ulusal Egemenlik ve Çocuk Bayramı", (Holidays.on(Date.civil(2017, 4, 23), [:tr])[0] || {})[:name]
 
-    assert_equal "Emek ve Dayanışma Günü", (Holidays.on(Date.civil(2017, 5, 1), [:tr])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 4, 23), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Ulusal Egemenlik ve Çocuk Bayramı" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 4, 23), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
 
-    assert_equal "Atatürk'ü Anma Gençlik ve Spor Bayramı", (Holidays.on(Date.civil(2017, 5, 19), [:tr])[0] || {})[:name]
 
-    assert_equal "Zafer Bayramı", (Holidays.on(Date.civil(2017, 8, 30), [:tr])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 5, 1), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Emek ve Dayanışma Günü" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 5, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
 
-    assert_equal "Cumhuriyet Bayramı", (Holidays.on(Date.civil(2017, 10, 29), [:tr])[0] || {})[:name]
 
-    assert_equal "Ramazan Bayramı", (Holidays.on(Date.civil(2017, 6, 25), [:tr])[0] || {})[:name]
-assert_equal "Ramazan Bayramı", (Holidays.on(Date.civil(2018, 6, 15), [:tr])[0] || {})[:name]
-assert_equal "Ramazan Bayramı", (Holidays.on(Date.civil(2019, 6, 4), [:tr])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 5, 19), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Atatürk'ü Anma Gençlik ve Spor Bayramı" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 5, 19), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
 
-    assert_equal "Ramazan Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2017, 6, 26), [:tr])[0] || {})[:name]
-assert_equal "Ramazan Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2018, 6, 16), [:tr])[0] || {})[:name]
-assert_equal "Ramazan Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2019, 6, 5), [:tr])[0] || {})[:name]
 
-    assert_equal "Ramazan Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2017, 6, 27), [:tr])[0] || {})[:name]
-assert_equal "Ramazan Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2018, 6, 17), [:tr])[0] || {})[:name]
-assert_equal "Ramazan Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2019, 6, 6), [:tr])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 8, 30), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Zafer Bayramı" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 8, 30), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
 
-    assert_equal "Demokrasi ve Milli Birlik Günü", (Holidays.on(Date.civil(2017, 7, 15), [:tr])[0] || {})[:name]
 
-    assert_equal "Kurban Bayramı", (Holidays.on(Date.civil(2017, 9, 1), [:tr])[0] || {})[:name]
-assert_equal "Kurban Bayramı", (Holidays.on(Date.civil(2018, 8, 21), [:tr])[0] || {})[:name]
-assert_equal "Kurban Bayramı", (Holidays.on(Date.civil(2019, 8, 11), [:tr])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 10, 29), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Cumhuriyet Bayramı" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 10, 29), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
 
-    assert_equal "Kurban Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2017, 9, 2), [:tr])[0] || {})[:name]
-assert_equal "Kurban Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2018, 8, 22), [:tr])[0] || {})[:name]
-assert_equal "Kurban Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2019, 8, 12), [:tr])[0] || {})[:name]
 
-    assert_equal "Kurban Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2017, 9, 3), [:tr])[0] || {})[:name]
-assert_equal "Kurban Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2018, 8, 23), [:tr])[0] || {})[:name]
-assert_equal "Kurban Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2019, 8, 13), [:tr])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 6, 25), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Ramazan Bayramı" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 6, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
 
-    assert_equal "Kurban Bayramı (dördüncü tatil)", (Holidays.on(Date.civil(2017, 9, 4), [:tr])[0] || {})[:name]
-assert_equal "Kurban Bayramı (dördüncü tatil)", (Holidays.on(Date.civil(2018, 8, 24), [:tr])[0] || {})[:name]
-assert_equal "Kurban Bayramı (dördüncü tatil)", (Holidays.on(Date.civil(2019, 8, 14), [:tr])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2018, 6, 15), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Ramazan Bayramı" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 6, 15), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
+
+    holidays = Holidays.on(Date.civil(2019, 6, 4), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Ramazan Bayramı" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 6, 4), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
+
+
+    holidays = Holidays.on(Date.civil(2017, 6, 26), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Ramazan Bayramı (ikinci tatil)" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 6, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
+
+    holidays = Holidays.on(Date.civil(2018, 6, 16), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Ramazan Bayramı (ikinci tatil)" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 6, 16), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
+
+    holidays = Holidays.on(Date.civil(2019, 6, 5), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Ramazan Bayramı (ikinci tatil)" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 6, 5), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
+
+
+    holidays = Holidays.on(Date.civil(2017, 6, 27), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Ramazan Bayramı (üçüncü tatil)" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 6, 27), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
+
+    holidays = Holidays.on(Date.civil(2018, 6, 17), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Ramazan Bayramı (üçüncü tatil)" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 6, 17), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
+
+    holidays = Holidays.on(Date.civil(2019, 6, 6), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Ramazan Bayramı (üçüncü tatil)" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 6, 6), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
+
+
+    holidays = Holidays.on(Date.civil(2017, 7, 15), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Demokrasi ve Milli Birlik Günü" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 7, 15), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
+
+
+    holidays = Holidays.on(Date.civil(2017, 9, 1), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Kurban Bayramı" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 9, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
+
+    holidays = Holidays.on(Date.civil(2018, 8, 21), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Kurban Bayramı" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 8, 21), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
+
+    holidays = Holidays.on(Date.civil(2019, 8, 11), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Kurban Bayramı" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 8, 11), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
+
+
+    holidays = Holidays.on(Date.civil(2017, 9, 2), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Kurban Bayramı (ikinci tatil)" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 9, 2), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
+
+    holidays = Holidays.on(Date.civil(2018, 8, 22), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Kurban Bayramı (ikinci tatil)" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 8, 22), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
+
+    holidays = Holidays.on(Date.civil(2019, 8, 12), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Kurban Bayramı (ikinci tatil)" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 8, 12), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
+
+
+    holidays = Holidays.on(Date.civil(2017, 9, 3), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Kurban Bayramı (üçüncü tatil)" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 9, 3), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
+
+    holidays = Holidays.on(Date.civil(2018, 8, 23), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Kurban Bayramı (üçüncü tatil)" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 8, 23), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
+
+    holidays = Holidays.on(Date.civil(2019, 8, 13), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Kurban Bayramı (üçüncü tatil)" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 8, 13), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
+
+
+    holidays = Holidays.on(Date.civil(2017, 9, 4), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Kurban Bayramı (dördüncü tatil)" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 9, 4), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
+
+    holidays = Holidays.on(Date.civil(2018, 8, 24), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Kurban Bayramı (dördüncü tatil)" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 8, 24), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
+
+    holidays = Holidays.on(Date.civil(2019, 8, 14), [:tr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Kurban Bayramı (dördüncü tatil)" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 8, 14), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :tr
+
 
   end
 end

@@ -7,23 +7,68 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class NercDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_nerc
-    assert_equal "New Year's Day", (Holidays.on(Date.civil(2013, 1, 1), [:nerc], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2013, 1, 1), [:nerc], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "New Year's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nerc
 
-    assert_equal "New Year's Day", (Holidays.on(Date.civil(2017, 1, 2), [:nerc], [:observed])[0] || {})[:name]
 
-    assert_equal "Memorial Day", (Holidays.on(Date.civil(2013, 5, 27), [:nerc], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 1, 2), [:nerc], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "New Year's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 1, 2), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nerc
 
-    assert_equal "Independence Day", (Holidays.on(Date.civil(2013, 7, 4), [:nerc], [:observed])[0] || {})[:name]
 
-    assert_equal "Independence Day", (Holidays.on(Date.civil(2010, 7, 5), [:nerc], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2013, 5, 27), [:nerc], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Memorial Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 5, 27), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nerc
 
-    assert_equal "Labor Day", (Holidays.on(Date.civil(2013, 9, 2), [:nerc], [:observed])[0] || {})[:name]
 
-    assert_equal "Thanksgiving", (Holidays.on(Date.civil(2013, 11, 28), [:nerc], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2013, 7, 4), [:nerc], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Independence Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 7, 4), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nerc
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2013, 12, 25), [:nerc], [:observed])[0] || {})[:name]
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2011, 12, 26), [:nerc], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2010, 7, 5), [:nerc], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Independence Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2010, 7, 5), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nerc
+
+
+    holidays = Holidays.on(Date.civil(2013, 9, 2), [:nerc], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Labor Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 9, 2), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nerc
+
+
+    holidays = Holidays.on(Date.civil(2013, 11, 28), [:nerc], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Thanksgiving" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 11, 28), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nerc
+
+
+    holidays = Holidays.on(Date.civil(2013, 12, 25), [:nerc], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Christmas Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nerc
+
+
+    holidays = Holidays.on(Date.civil(2011, 12, 26), [:nerc], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Christmas Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2011, 12, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nerc
+
 
   end
 end

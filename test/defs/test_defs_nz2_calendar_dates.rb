@@ -7,29 +7,89 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class Nz2_calendar_datesDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_nz2_calendar_dates
-    assert_equal "New Year's Day", (Holidays.on(Date.civil(2007, 1, 1), [:nz2_calendar_dates], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2007, 1, 1), [:nz2_calendar_dates], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "New Year's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nz2_calendar_dates
 
-    assert_equal "Day after New Year's Day", (Holidays.on(Date.civil(2007, 1, 2), [:nz2_calendar_dates], [:informal])[0] || {})[:name]
 
-    assert_equal "Waitangi Day", (Holidays.on(Date.civil(2007, 2, 6), [:nz2_calendar_dates], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2007, 1, 2), [:nz2_calendar_dates], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Day after New Year's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 1, 2), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nz2_calendar_dates
 
-    assert_equal "Good Friday", (Holidays.on(Date.civil(2007, 4, 6), [:nz2_calendar_dates], [:informal])[0] || {})[:name]
 
-    assert_equal "Easter Monday", (Holidays.on(Date.civil(2007, 4, 9), [:nz2_calendar_dates], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2007, 2, 6), [:nz2_calendar_dates], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Waitangi Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 2, 6), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nz2_calendar_dates
 
-    assert_equal "ANZAC Day", (Holidays.on(Date.civil(2007, 4, 25), [:nz2_calendar_dates], [:informal])[0] || {})[:name]
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2007, 12, 25), [:nz2_calendar_dates], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2007, 4, 6), [:nz2_calendar_dates], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Good Friday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 4, 6), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nz2_calendar_dates
 
-    assert_equal "Boxing Day", (Holidays.on(Date.civil(2007, 12, 26), [:nz2_calendar_dates], [:informal])[0] || {})[:name]
 
-    assert_equal "ANZAC Day", (Holidays.on(Date.civil(2015, 4, 25), [:nz2_calendar_dates])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2007, 4, 9), [:nz2_calendar_dates], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Easter Monday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 4, 9), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nz2_calendar_dates
 
-    assert_equal "ANZAC Day", (Holidays.on(Date.civil(2016, 4, 25), [:nz2_calendar_dates])[0] || {})[:name]
 
-    assert_equal "Waitangi Day", (Holidays.on(Date.civil(2015, 2, 6), [:nz2_calendar_dates])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2007, 4, 25), [:nz2_calendar_dates], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "ANZAC Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 4, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nz2_calendar_dates
 
-    assert_equal "Waitangi Day", (Holidays.on(Date.civil(2016, 2, 6), [:nz2_calendar_dates])[0] || {})[:name]
+
+    holidays = Holidays.on(Date.civil(2007, 12, 25), [:nz2_calendar_dates], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Christmas Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nz2_calendar_dates
+
+
+    holidays = Holidays.on(Date.civil(2007, 12, 26), [:nz2_calendar_dates], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Boxing Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 12, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nz2_calendar_dates
+
+
+    holidays = Holidays.on(Date.civil(2015, 4, 25), [:nz2_calendar_dates])
+    matching_holiday = holidays.find { |hol| hol[:name] == "ANZAC Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 4, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nz2_calendar_dates
+
+
+    holidays = Holidays.on(Date.civil(2016, 4, 25), [:nz2_calendar_dates])
+    matching_holiday = holidays.find { |hol| hol[:name] == "ANZAC Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 4, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nz2_calendar_dates
+
+
+    holidays = Holidays.on(Date.civil(2015, 2, 6), [:nz2_calendar_dates])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Waitangi Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 2, 6), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nz2_calendar_dates
+
+
+    holidays = Holidays.on(Date.civil(2016, 2, 6), [:nz2_calendar_dates])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Waitangi Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 2, 6), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nz2_calendar_dates
+
 
   end
 end

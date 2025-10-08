@@ -7,35 +7,115 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class Mt_mtDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_mt_mt
-    assert_equal "L-Ewwel tas-Sena", (Holidays.on(Date.civil(2017, 1, 1), [:mt_mt])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 1, 1), [:mt_mt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "L-Ewwel tas-Sena" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mt_mt
 
-    assert_equal "Nawfraġju ta' San Pawl", (Holidays.on(Date.civil(2017, 2, 10), [:mt_mt])[0] || {})[:name]
 
-    assert_equal "San Ġużepp", (Holidays.on(Date.civil(2017, 3, 19), [:mt_mt])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 2, 10), [:mt_mt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Nawfraġju ta' San Pawl" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 2, 10), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mt_mt
 
-    assert_equal "Jum il-Ħelsien", (Holidays.on(Date.civil(2017, 3, 31), [:mt_mt])[0] || {})[:name]
 
-    assert_equal "Jum il-Ħaddiem", (Holidays.on(Date.civil(2017, 5, 1), [:mt_mt])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 3, 19), [:mt_mt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "San Ġużepp" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 3, 19), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mt_mt
 
-    assert_equal "Sette Giugno", (Holidays.on(Date.civil(2017, 6, 7), [:mt_mt])[0] || {})[:name]
 
-    assert_equal "L-Imnarja", (Holidays.on(Date.civil(2017, 6, 29), [:mt_mt])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 3, 31), [:mt_mt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Jum il-Ħelsien" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 3, 31), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mt_mt
 
-    assert_equal "Santa Marija", (Holidays.on(Date.civil(2017, 8, 15), [:mt_mt])[0] || {})[:name]
 
-    assert_equal "Jum il-Vitorja", (Holidays.on(Date.civil(2017, 9, 8), [:mt_mt])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 5, 1), [:mt_mt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Jum il-Ħaddiem" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 5, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mt_mt
 
-    assert_equal "Jum l-Indipendenza", (Holidays.on(Date.civil(2017, 9, 21), [:mt_mt])[0] || {})[:name]
 
-    assert_equal "Il-Kunċizzjoni", (Holidays.on(Date.civil(2017, 12, 8), [:mt_mt])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 6, 7), [:mt_mt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Sette Giugno" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 6, 7), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mt_mt
 
-    assert_equal "Jum ir-Repubblika", (Holidays.on(Date.civil(2017, 12, 13), [:mt_mt])[0] || {})[:name]
 
-    assert_equal "Il-Milied", (Holidays.on(Date.civil(2017, 12, 25), [:mt_mt])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 6, 29), [:mt_mt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "L-Imnarja" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 6, 29), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mt_mt
 
-    assert_equal "Il-Ġimgħa l-Kbira", (Holidays.on(Date.civil(2017, 4, 14), [:mt_mt])[0] || {})[:name]
-assert_equal "Il-Ġimgħa l-Kbira", (Holidays.on(Date.civil(2018, 3, 30), [:mt_mt])[0] || {})[:name]
-assert_equal "Il-Ġimgħa l-Kbira", (Holidays.on(Date.civil(2019, 4, 19), [:mt_mt])[0] || {})[:name]
+
+    holidays = Holidays.on(Date.civil(2017, 8, 15), [:mt_mt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Santa Marija" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 8, 15), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mt_mt
+
+
+    holidays = Holidays.on(Date.civil(2017, 9, 8), [:mt_mt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Jum il-Vitorja" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 9, 8), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mt_mt
+
+
+    holidays = Holidays.on(Date.civil(2017, 9, 21), [:mt_mt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Jum l-Indipendenza" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 9, 21), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mt_mt
+
+
+    holidays = Holidays.on(Date.civil(2017, 12, 8), [:mt_mt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Il-Kunċizzjoni" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 12, 8), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mt_mt
+
+
+    holidays = Holidays.on(Date.civil(2017, 12, 13), [:mt_mt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Jum ir-Repubblika" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 12, 13), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mt_mt
+
+
+    holidays = Holidays.on(Date.civil(2017, 12, 25), [:mt_mt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Il-Milied" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mt_mt
+
+
+    holidays = Holidays.on(Date.civil(2017, 4, 14), [:mt_mt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Il-Ġimgħa l-Kbira" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 4, 14), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mt_mt
+
+    holidays = Holidays.on(Date.civil(2018, 3, 30), [:mt_mt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Il-Ġimgħa l-Kbira" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 3, 30), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mt_mt
+
+    holidays = Holidays.on(Date.civil(2019, 4, 19), [:mt_mt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Il-Ġimgħa l-Kbira" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 4, 19), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mt_mt
+
 
   end
 end

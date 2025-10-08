@@ -7,57 +7,187 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class LtDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_lt
-    assert_equal "Naujieji metai", (Holidays.on(Date.civil(2008, 1, 1), [:lt])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2008, 1, 1), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Naujieji metai" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
 
-    assert_equal "Valstybės atkūrimo diena", (Holidays.on(Date.civil(2008, 2, 16), [:lt])[0] || {})[:name]
 
-    assert_equal "Nepriklausomybės atkūrimo diena", (Holidays.on(Date.civil(2008, 3, 11), [:lt])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2008, 2, 16), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Valstybės atkūrimo diena" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 2, 16), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
 
-    assert_equal "Šv. Velykos", (Holidays.on(Date.civil(2008, 3, 23), [:lt])[0] || {})[:name]
 
-    assert_equal "Antroji Velykų diena", (Holidays.on(Date.civil(2008, 3, 24), [:lt])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2008, 3, 11), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Nepriklausomybės atkūrimo diena" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 3, 11), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
 
-    assert_equal "Darbininkų diena", (Holidays.on(Date.civil(2008, 5, 1), [:lt])[0] || {})[:name]
 
-    assert_equal "Joninės", (Holidays.on(Date.civil(2008, 6, 24), [:lt])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2008, 3, 23), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Šv. Velykos" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 3, 23), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
 
-    assert_equal "Valstybės diena", (Holidays.on(Date.civil(2008, 7, 6), [:lt])[0] || {})[:name]
 
-    assert_equal "Žolinė", (Holidays.on(Date.civil(2008, 8, 15), [:lt])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2008, 3, 24), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Antroji Velykų diena" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 3, 24), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
 
-    assert_equal "Visų šventųjų diena", (Holidays.on(Date.civil(2008, 11, 1), [:lt])[0] || {})[:name]
 
-    assert_equal "Šv. Kūčios", (Holidays.on(Date.civil(2008, 12, 24), [:lt])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2008, 5, 1), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Darbininkų diena" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 5, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
 
-    assert_equal "Šv. Kalėdos", (Holidays.on(Date.civil(2008, 12, 25), [:lt])[0] || {})[:name]
 
-    assert_equal "Antroji Kalėdų diena", (Holidays.on(Date.civil(2008, 12, 26), [:lt])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2008, 6, 24), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Joninės" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 6, 24), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
 
-    assert_equal "Naujieji metai", (Holidays.on(Date.civil(2012, 1, 1), [:lt])[0] || {})[:name]
 
-    assert_equal "Valstybės atkūrimo diena", (Holidays.on(Date.civil(2012, 2, 16), [:lt])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2008, 7, 6), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Valstybės diena" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 7, 6), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
 
-    assert_equal "Nepriklausomybės atkūrimo diena", (Holidays.on(Date.civil(2012, 3, 11), [:lt])[0] || {})[:name]
 
-    assert_equal "Šv. Velykos", (Holidays.on(Date.civil(2012, 4, 8), [:lt])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2008, 8, 15), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Žolinė" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 8, 15), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
 
-    assert_equal "Antroji Velykų diena", (Holidays.on(Date.civil(2012, 4, 9), [:lt])[0] || {})[:name]
 
-    assert_equal "Darbininkų diena", (Holidays.on(Date.civil(2012, 5, 1), [:lt])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2008, 11, 1), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Visų šventųjų diena" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 11, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
 
-    assert_equal "Joninės", (Holidays.on(Date.civil(2012, 6, 24), [:lt])[0] || {})[:name]
 
-    assert_equal "Valstybės diena", (Holidays.on(Date.civil(2012, 7, 6), [:lt])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2008, 12, 24), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Šv. Kūčios" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 12, 24), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
 
-    assert_equal "Žolinė", (Holidays.on(Date.civil(2012, 8, 15), [:lt])[0] || {})[:name]
 
-    assert_equal "Visų šventųjų diena", (Holidays.on(Date.civil(2012, 11, 1), [:lt])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2008, 12, 25), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Šv. Kalėdos" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
 
-    assert_equal "Šv. Kūčios", (Holidays.on(Date.civil(2012, 12, 24), [:lt])[0] || {})[:name]
 
-    assert_equal "Šv. Kalėdos", (Holidays.on(Date.civil(2012, 12, 25), [:lt])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2008, 12, 26), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Antroji Kalėdų diena" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 12, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
 
-    assert_equal "Antroji Kalėdų diena", (Holidays.on(Date.civil(2012, 12, 26), [:lt])[0] || {})[:name]
+
+    holidays = Holidays.on(Date.civil(2012, 1, 1), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Naujieji metai" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
+
+
+    holidays = Holidays.on(Date.civil(2012, 2, 16), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Valstybės atkūrimo diena" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 2, 16), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
+
+
+    holidays = Holidays.on(Date.civil(2012, 3, 11), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Nepriklausomybės atkūrimo diena" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 3, 11), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
+
+
+    holidays = Holidays.on(Date.civil(2012, 4, 8), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Šv. Velykos" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 4, 8), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
+
+
+    holidays = Holidays.on(Date.civil(2012, 4, 9), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Antroji Velykų diena" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 4, 9), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
+
+
+    holidays = Holidays.on(Date.civil(2012, 5, 1), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Darbininkų diena" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 5, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
+
+
+    holidays = Holidays.on(Date.civil(2012, 6, 24), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Joninės" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 6, 24), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
+
+
+    holidays = Holidays.on(Date.civil(2012, 7, 6), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Valstybės diena" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 7, 6), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
+
+
+    holidays = Holidays.on(Date.civil(2012, 8, 15), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Žolinė" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 8, 15), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
+
+
+    holidays = Holidays.on(Date.civil(2012, 11, 1), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Visų šventųjų diena" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 11, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
+
+
+    holidays = Holidays.on(Date.civil(2012, 12, 24), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Šv. Kūčios" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 12, 24), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
+
+
+    holidays = Holidays.on(Date.civil(2012, 12, 25), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Šv. Kalėdos" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
+
+
+    holidays = Holidays.on(Date.civil(2012, 12, 26), [:lt])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Antroji Kalėdų diena" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 12, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lt
+
 
   end
 end

@@ -7,15 +7,40 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class UyDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_uy
-    assert_equal "Año Nuevo", (Holidays.on(Date.civil(2012, 1, 1), [:uy])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 1, 1), [:uy])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Año Nuevo" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :uy
 
-    assert_equal "Dia Del Trabajador", (Holidays.on(Date.civil(2022, 5, 1), [:uy])[0] || {})[:name]
 
-    assert_equal "Jura Constitución", (Holidays.on(Date.civil(2023, 7, 18), [:uy])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2022, 5, 1), [:uy])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Dia Del Trabajador" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2022, 5, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :uy
 
-    assert_equal "Día Independencia", (Holidays.on(Date.civil(2023, 8, 25), [:uy])[0] || {})[:name]
 
-    assert_equal "Navidad", (Holidays.on(Date.civil(2017, 12, 25), [:uy])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2023, 7, 18), [:uy])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Jura Constitución" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2023, 7, 18), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :uy
+
+
+    holidays = Holidays.on(Date.civil(2023, 8, 25), [:uy])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Día Independencia" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2023, 8, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :uy
+
+
+    holidays = Holidays.on(Date.civil(2017, 12, 25), [:uy])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Navidad" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :uy
+
 
   end
 end

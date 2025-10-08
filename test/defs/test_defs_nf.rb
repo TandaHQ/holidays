@@ -7,23 +7,88 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class NfDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_nf
-    assert_equal "Good Friday", (Holidays.on(Date.civil(2018, 3, 30), [:nf])[0] || {})[:name]
-assert_equal "Good Friday", (Holidays.on(Date.civil(2019, 4, 19), [:nf])[0] || {})[:name]
-assert_equal "Good Friday", (Holidays.on(Date.civil(2020, 4, 10), [:nf])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2018, 3, 30), [:nf])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Good Friday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 3, 30), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nf
 
-    assert_equal "Easter Monday", (Holidays.on(Date.civil(2018, 4, 2), [:nf])[0] || {})[:name]
-assert_equal "Easter Monday", (Holidays.on(Date.civil(2019, 4, 22), [:nf])[0] || {})[:name]
-assert_equal "Easter Monday", (Holidays.on(Date.civil(2020, 4, 13), [:nf])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2019, 4, 19), [:nf])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Good Friday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 4, 19), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nf
 
-    assert_equal "Queen's Birthday", (Holidays.on(Date.civil(2018, 6, 11), [:nf])[0] || {})[:name]
-assert_equal "Queen's Birthday", (Holidays.on(Date.civil(2019, 6, 10), [:nf])[0] || {})[:name]
-assert_equal "Queen's Birthday", (Holidays.on(Date.civil(2020, 6, 15), [:nf])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2020, 4, 10), [:nf])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Good Friday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2020, 4, 10), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nf
 
-    assert_equal "Australia Day", (Holidays.on(Date.civil(2019, 1, 28), [:nf], [:observed])[0] || {})[:name]
-assert_equal "Australia Day", (Holidays.on(Date.civil(2020, 1, 27), [:nf], [:observed])[0] || {})[:name]
 
-    assert_equal "Boxing Day", (Holidays.on(Date.civil(2019, 12, 26), [:nf], [:observed])[0] || {})[:name]
-assert_equal "Boxing Day", (Holidays.on(Date.civil(2020, 12, 28), [:nf], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2018, 4, 2), [:nf])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Easter Monday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 4, 2), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nf
+
+    holidays = Holidays.on(Date.civil(2019, 4, 22), [:nf])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Easter Monday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 4, 22), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nf
+
+    holidays = Holidays.on(Date.civil(2020, 4, 13), [:nf])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Easter Monday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2020, 4, 13), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nf
+
+
+    holidays = Holidays.on(Date.civil(2018, 6, 11), [:nf])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Queen's Birthday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 6, 11), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nf
+
+    holidays = Holidays.on(Date.civil(2019, 6, 10), [:nf])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Queen's Birthday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 6, 10), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nf
+
+    holidays = Holidays.on(Date.civil(2020, 6, 15), [:nf])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Queen's Birthday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2020, 6, 15), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nf
+
+
+    holidays = Holidays.on(Date.civil(2019, 1, 28), [:nf], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Australia Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 1, 28), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nf
+
+    holidays = Holidays.on(Date.civil(2020, 1, 27), [:nf], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Australia Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2020, 1, 27), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nf
+
+
+    holidays = Holidays.on(Date.civil(2019, 12, 26), [:nf], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Boxing Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 12, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nf
+
+    holidays = Holidays.on(Date.civil(2020, 12, 28), [:nf], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Boxing Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2020, 12, 28), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nf
+
 
   end
 end

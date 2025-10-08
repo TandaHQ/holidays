@@ -7,31 +7,96 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class KrDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_kr
-    assert_equal "설날", (Holidays.on(Date.civil(2016, 2, 8), [:kr], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 2, 8), [:kr], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "설날" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 2, 8), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :kr
 
-    assert_equal "설날 연휴", (Holidays.on(Date.civil(2017, 1, 29), [:kr], [:informal])[0] || {})[:name]
 
-    assert_equal "석가탄신일", (Holidays.on(Date.civil(2016, 5, 14), [:kr], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 1, 29), [:kr], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "설날 연휴" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 1, 29), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :kr
 
-    assert_equal "추석", (Holidays.on(Date.civil(2016, 9, 15), [:kr], [:informal])[0] || {})[:name]
 
-    assert_equal "3·1절", (Holidays.on(Date.civil(2016, 3, 1), [:kr], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 5, 14), [:kr], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "석가탄신일" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 5, 14), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :kr
 
-    assert_equal "어린이날", (Holidays.on(Date.civil(2016, 5, 5), [:kr], [:informal])[0] || {})[:name]
 
-    assert_equal "현충일", (Holidays.on(Date.civil(2016, 6, 6), [:kr], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 9, 15), [:kr], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "추석" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 9, 15), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :kr
 
-    assert_equal "제헌절", (Holidays.on(Date.civil(2016, 7, 17), [:kr], [:informal])[0] || {})[:name]
 
-    assert_equal "광복절", (Holidays.on(Date.civil(2016, 8, 15), [:kr], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 3, 1), [:kr], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "3·1절" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 3, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :kr
 
-    assert_equal "개천절", (Holidays.on(Date.civil(2016, 10, 3), [:kr], [:informal])[0] || {})[:name]
 
-    assert_equal "한글날", (Holidays.on(Date.civil(2016, 10, 9), [:kr], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 5, 5), [:kr], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "어린이날" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 5, 5), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :kr
 
-    assert_equal "크리스마스", (Holidays.on(Date.civil(2016, 12, 25), [:kr], [:informal])[0] || {})[:name]
 
-    assert_equal "설날", (Holidays.on(Date.civil(2017, 1, 28), [:kr], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 6, 6), [:kr], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "현충일" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 6, 6), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :kr
+
+
+    holidays = Holidays.on(Date.civil(2016, 7, 17), [:kr], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "제헌절" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 7, 17), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :kr
+
+
+    holidays = Holidays.on(Date.civil(2016, 8, 15), [:kr], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "광복절" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 8, 15), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :kr
+
+
+    holidays = Holidays.on(Date.civil(2016, 10, 3), [:kr], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "개천절" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 10, 3), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :kr
+
+
+    holidays = Holidays.on(Date.civil(2016, 10, 9), [:kr], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "한글날" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 10, 9), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :kr
+
+
+    holidays = Holidays.on(Date.civil(2016, 12, 25), [:kr], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "크리스마스" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :kr
+
+
+    holidays = Holidays.on(Date.civil(2017, 1, 28), [:kr], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "설날" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 1, 28), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :kr
+
 
   end
 end

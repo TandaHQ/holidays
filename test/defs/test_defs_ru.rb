@@ -7,28 +7,93 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class RuDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_ru
-    assert_equal "Новый год", (Holidays.on(Date.civil(2017, 1, 1), [:ru])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 1, 1), [:ru])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Новый год" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ru
 
-    assert_equal "Новогодний праздник", (Holidays.on(Date.civil(2017, 1, 2), [:ru])[0] || {})[:name]
-assert_equal "Новогодний праздник", (Holidays.on(Date.civil(2017, 1, 3), [:ru])[0] || {})[:name]
-assert_equal "Новогодний праздник", (Holidays.on(Date.civil(2017, 1, 4), [:ru])[0] || {})[:name]
-assert_equal "Новогодний праздник", (Holidays.on(Date.civil(2017, 1, 5), [:ru])[0] || {})[:name]
 
-    assert_equal "Рождество Христово", (Holidays.on(Date.civil(2017, 1, 7), [:ru])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 1, 2), [:ru])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Новогодний праздник" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 1, 2), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ru
 
-    assert_equal "День защитника Отечества", (Holidays.on(Date.civil(2017, 2, 23), [:ru])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 1, 3), [:ru])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Новогодний праздник" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 1, 3), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ru
 
-    assert_equal "Международный женский день", (Holidays.on(Date.civil(2017, 3, 8), [:ru])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 1, 4), [:ru])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Новогодний праздник" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 1, 4), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ru
 
-    assert_equal "Праздник Весны и Труда", (Holidays.on(Date.civil(2017, 5, 1), [:ru])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 1, 5), [:ru])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Новогодний праздник" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 1, 5), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ru
 
-    assert_equal "День Победы", (Holidays.on(Date.civil(2017, 5, 9), [:ru])[0] || {})[:name]
 
-    assert_equal "День России", (Holidays.on(Date.civil(2017, 6, 12), [:ru])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 1, 7), [:ru])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Рождество Христово" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 1, 7), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ru
 
-    assert_equal "День Государственного флага Российской Федерации", (Holidays.on(Date.civil(2017, 8, 22), [:ru])[0] || {})[:name]
 
-    assert_equal "День народного единства", (Holidays.on(Date.civil(2017, 11, 4), [:ru])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 2, 23), [:ru])
+    matching_holiday = holidays.find { |hol| hol[:name] == "День защитника Отечества" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 2, 23), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ru
+
+
+    holidays = Holidays.on(Date.civil(2017, 3, 8), [:ru])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Международный женский день" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 3, 8), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ru
+
+
+    holidays = Holidays.on(Date.civil(2017, 5, 1), [:ru])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Праздник Весны и Труда" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 5, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ru
+
+
+    holidays = Holidays.on(Date.civil(2017, 5, 9), [:ru])
+    matching_holiday = holidays.find { |hol| hol[:name] == "День Победы" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 5, 9), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ru
+
+
+    holidays = Holidays.on(Date.civil(2017, 6, 12), [:ru])
+    matching_holiday = holidays.find { |hol| hol[:name] == "День России" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 6, 12), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ru
+
+
+    holidays = Holidays.on(Date.civil(2017, 8, 22), [:ru])
+    matching_holiday = holidays.find { |hol| hol[:name] == "День Государственного флага Российской Федерации" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 8, 22), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ru
+
+
+    holidays = Holidays.on(Date.civil(2017, 11, 4), [:ru])
+    matching_holiday = holidays.find { |hol| hol[:name] == "День народного единства" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 11, 4), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ru
+
 
   end
 end

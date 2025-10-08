@@ -7,47 +7,172 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class GeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_ge
-    assert_equal "ახალი წელი", (Holidays.on(Date.civil(2017, 1, 1), [:ge])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 1, 1), [:ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "ახალი წელი" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ge
 
-    assert_equal "ბედობა", (Holidays.on(Date.civil(2017, 1, 2), [:ge])[0] || {})[:name]
 
-    assert_equal "ქრისტეშობა", (Holidays.on(Date.civil(2017, 1, 7), [:ge])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 1, 2), [:ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "ბედობა" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 1, 2), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ge
 
-    assert_equal "ნათლისღება", (Holidays.on(Date.civil(2017, 1, 19), [:ge])[0] || {})[:name]
 
-    assert_equal "დედის დღე", (Holidays.on(Date.civil(2017, 3, 3), [:ge])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 1, 7), [:ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "ქრისტეშობა" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 1, 7), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ge
 
-    assert_equal "ქალთა საერთაშორისო დღე", (Holidays.on(Date.civil(2017, 3, 8), [:ge])[0] || {})[:name]
 
-    assert_equal "ეროვნული ერთიანობის დღე", (Holidays.on(Date.civil(2017, 4, 9), [:ge])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 1, 19), [:ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "ნათლისღება" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 1, 19), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ge
 
-    assert_equal "ფაშიზმზე გამარჯვების დღე", (Holidays.on(Date.civil(2017, 5, 9), [:ge])[0] || {})[:name]
 
-    assert_equal "წმინდა მოციქულის ანდრია პირველწოდებულის საქართველოში შემოსვლის დღე", (Holidays.on(Date.civil(2017, 5, 12), [:ge])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 3, 3), [:ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "დედის დღე" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 3, 3), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ge
 
-    assert_equal "დამოუკიდებლობის დღე", (Holidays.on(Date.civil(2017, 5, 26), [:ge])[0] || {})[:name]
 
-    assert_equal "მარიამობა", (Holidays.on(Date.civil(2017, 8, 28), [:ge])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 3, 8), [:ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "ქალთა საერთაშორისო დღე" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 3, 8), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ge
 
-    assert_equal "სვეტიცხოვლობა", (Holidays.on(Date.civil(2017, 10, 14), [:ge])[0] || {})[:name]
 
-    assert_equal "გიორგობა", (Holidays.on(Date.civil(2017, 11, 23), [:ge])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 4, 9), [:ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "ეროვნული ერთიანობის დღე" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 4, 9), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ge
 
-    assert_equal "დიდი პარასკევი", (Holidays.on(Date.civil(2017, 4, 14), [:ge])[0] || {})[:name]
-assert_equal "დიდი პარასკევი", (Holidays.on(Date.civil(2018, 4, 6), [:ge])[0] || {})[:name]
-assert_equal "დიდი პარასკევი", (Holidays.on(Date.civil(2019, 4, 26), [:ge])[0] || {})[:name]
 
-    assert_equal "დიდი შაბათი", (Holidays.on(Date.civil(2017, 4, 15), [:ge])[0] || {})[:name]
-assert_equal "დიდი შაბათი", (Holidays.on(Date.civil(2018, 4, 7), [:ge])[0] || {})[:name]
-assert_equal "დიდი შაბათი", (Holidays.on(Date.civil(2019, 4, 27), [:ge])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 5, 9), [:ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "ფაშიზმზე გამარჯვების დღე" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 5, 9), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ge
 
-    assert_equal "ბრწყინვალე აღდგომის დღე", (Holidays.on(Date.civil(2017, 4, 16), [:ge])[0] || {})[:name]
-assert_equal "ბრწყინვალე აღდგომის დღე", (Holidays.on(Date.civil(2018, 4, 8), [:ge])[0] || {})[:name]
-assert_equal "ბრწყინვალე აღდგომის დღე", (Holidays.on(Date.civil(2019, 4, 28), [:ge])[0] || {})[:name]
 
-    assert_equal "მიცვალებულთა", (Holidays.on(Date.civil(2017, 4, 17), [:ge])[0] || {})[:name]
-assert_equal "მიცვალებულთა", (Holidays.on(Date.civil(2018, 4, 9), [:ge])[0] || {})[:name]
-assert_equal "მიცვალებულთა", (Holidays.on(Date.civil(2019, 4, 29), [:ge])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 5, 12), [:ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "წმინდა მოციქულის ანდრია პირველწოდებულის საქართველოში შემოსვლის დღე" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 5, 12), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ge
+
+
+    holidays = Holidays.on(Date.civil(2017, 5, 26), [:ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "დამოუკიდებლობის დღე" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 5, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ge
+
+
+    holidays = Holidays.on(Date.civil(2017, 8, 28), [:ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "მარიამობა" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 8, 28), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ge
+
+
+    holidays = Holidays.on(Date.civil(2017, 10, 14), [:ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "სვეტიცხოვლობა" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 10, 14), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ge
+
+
+    holidays = Holidays.on(Date.civil(2017, 11, 23), [:ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "გიორგობა" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 11, 23), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ge
+
+
+    holidays = Holidays.on(Date.civil(2017, 4, 14), [:ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "დიდი პარასკევი" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 4, 14), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ge
+
+    holidays = Holidays.on(Date.civil(2018, 4, 6), [:ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "დიდი პარასკევი" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 4, 6), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ge
+
+    holidays = Holidays.on(Date.civil(2019, 4, 26), [:ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "დიდი პარასკევი" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 4, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ge
+
+
+    holidays = Holidays.on(Date.civil(2017, 4, 15), [:ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "დიდი შაბათი" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 4, 15), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ge
+
+    holidays = Holidays.on(Date.civil(2018, 4, 7), [:ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "დიდი შაბათი" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 4, 7), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ge
+
+    holidays = Holidays.on(Date.civil(2019, 4, 27), [:ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "დიდი შაბათი" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 4, 27), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ge
+
+
+    holidays = Holidays.on(Date.civil(2017, 4, 16), [:ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "ბრწყინვალე აღდგომის დღე" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 4, 16), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ge
+
+    holidays = Holidays.on(Date.civil(2018, 4, 8), [:ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "ბრწყინვალე აღდგომის დღე" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 4, 8), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ge
+
+    holidays = Holidays.on(Date.civil(2019, 4, 28), [:ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "ბრწყინვალე აღდგომის დღე" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 4, 28), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ge
+
+
+    holidays = Holidays.on(Date.civil(2017, 4, 17), [:ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "მიცვალებულთა" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 4, 17), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ge
+
+    holidays = Holidays.on(Date.civil(2018, 4, 9), [:ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "მიცვალებულთა" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 4, 9), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ge
+
+    holidays = Holidays.on(Date.civil(2019, 4, 29), [:ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "მიცვალებულთა" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 4, 29), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ge
+
 
   end
 end

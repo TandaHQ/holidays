@@ -7,40 +7,155 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class Rs_cyrlDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_rs_cyrl
-    assert_equal "Нова Година", (Holidays.on(Date.civil(2017, 1, 1), [:rs_cyrl])[0] || {})[:name]
-assert_equal "Нова Година", (Holidays.on(Date.civil(2017, 1, 2), [:rs_cyrl])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 1, 1), [:rs_cyrl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Нова Година" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :rs_cyrl
 
-    assert_equal "Божић", (Holidays.on(Date.civil(2017, 1, 7), [:rs_cyrl])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 1, 2), [:rs_cyrl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Нова Година" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 1, 2), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :rs_cyrl
 
-    assert_equal "Свети Сава (Савиндан)", (Holidays.on(Date.civil(2017, 1, 27), [:rs_cyrl])[0] || {})[:name]
 
-    assert_equal "Дан државности Србије", (Holidays.on(Date.civil(2017, 2, 15), [:rs_cyrl])[0] || {})[:name]
-assert_equal "Дан државности Србије", (Holidays.on(Date.civil(2017, 2, 16), [:rs_cyrl])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 1, 7), [:rs_cyrl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Божић" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 1, 7), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :rs_cyrl
 
-    assert_equal "Празник рада", (Holidays.on(Date.civil(2017, 5, 1), [:rs_cyrl])[0] || {})[:name]
-assert_equal "Празник рада", (Holidays.on(Date.civil(2017, 5, 2), [:rs_cyrl])[0] || {})[:name]
 
-    assert_equal "Дан победе над фашизмом", (Holidays.on(Date.civil(2017, 5, 9), [:rs_cyrl])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 1, 27), [:rs_cyrl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Свети Сава (Савиндан)" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 1, 27), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :rs_cyrl
 
-    assert_equal "Видовдан", (Holidays.on(Date.civil(2017, 6, 28), [:rs_cyrl])[0] || {})[:name]
 
-    assert_equal "Дан примирја", (Holidays.on(Date.civil(2017, 11, 11), [:rs_cyrl])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 2, 15), [:rs_cyrl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Дан државности Србије" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 2, 15), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :rs_cyrl
 
-    assert_equal "Велики петак", (Holidays.on(Date.civil(2017, 4, 14), [:rs_cyrl])[0] || {})[:name]
-assert_equal "Велики петак", (Holidays.on(Date.civil(2018, 4, 6), [:rs_cyrl])[0] || {})[:name]
-assert_equal "Велики петак", (Holidays.on(Date.civil(2019, 4, 26), [:rs_cyrl])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 2, 16), [:rs_cyrl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Дан државности Србије" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 2, 16), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :rs_cyrl
 
-    assert_equal "Велика Субота", (Holidays.on(Date.civil(2017, 4, 15), [:rs_cyrl])[0] || {})[:name]
-assert_equal "Велика Субота", (Holidays.on(Date.civil(2018, 4, 7), [:rs_cyrl])[0] || {})[:name]
-assert_equal "Велика Субота", (Holidays.on(Date.civil(2019, 4, 27), [:rs_cyrl])[0] || {})[:name]
 
-    assert_equal "Васкрс", (Holidays.on(Date.civil(2017, 4, 16), [:rs_cyrl])[0] || {})[:name]
-assert_equal "Васкрс", (Holidays.on(Date.civil(2018, 4, 8), [:rs_cyrl])[0] || {})[:name]
-assert_equal "Васкрс", (Holidays.on(Date.civil(2019, 4, 28), [:rs_cyrl])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 5, 1), [:rs_cyrl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Празник рада" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 5, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :rs_cyrl
 
-    assert_equal "Васкрсни понедељак", (Holidays.on(Date.civil(2017, 4, 17), [:rs_cyrl])[0] || {})[:name]
-assert_equal "Васкрсни понедељак", (Holidays.on(Date.civil(2018, 4, 9), [:rs_cyrl])[0] || {})[:name]
-assert_equal "Васкрсни понедељак", (Holidays.on(Date.civil(2019, 4, 29), [:rs_cyrl])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 5, 2), [:rs_cyrl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Празник рада" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 5, 2), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :rs_cyrl
+
+
+    holidays = Holidays.on(Date.civil(2017, 5, 9), [:rs_cyrl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Дан победе над фашизмом" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 5, 9), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :rs_cyrl
+
+
+    holidays = Holidays.on(Date.civil(2017, 6, 28), [:rs_cyrl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Видовдан" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 6, 28), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :rs_cyrl
+
+
+    holidays = Holidays.on(Date.civil(2017, 11, 11), [:rs_cyrl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Дан примирја" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 11, 11), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :rs_cyrl
+
+
+    holidays = Holidays.on(Date.civil(2017, 4, 14), [:rs_cyrl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Велики петак" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 4, 14), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :rs_cyrl
+
+    holidays = Holidays.on(Date.civil(2018, 4, 6), [:rs_cyrl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Велики петак" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 4, 6), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :rs_cyrl
+
+    holidays = Holidays.on(Date.civil(2019, 4, 26), [:rs_cyrl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Велики петак" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 4, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :rs_cyrl
+
+
+    holidays = Holidays.on(Date.civil(2017, 4, 15), [:rs_cyrl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Велика Субота" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 4, 15), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :rs_cyrl
+
+    holidays = Holidays.on(Date.civil(2018, 4, 7), [:rs_cyrl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Велика Субота" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 4, 7), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :rs_cyrl
+
+    holidays = Holidays.on(Date.civil(2019, 4, 27), [:rs_cyrl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Велика Субота" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 4, 27), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :rs_cyrl
+
+
+    holidays = Holidays.on(Date.civil(2017, 4, 16), [:rs_cyrl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Васкрс" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 4, 16), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :rs_cyrl
+
+    holidays = Holidays.on(Date.civil(2018, 4, 8), [:rs_cyrl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Васкрс" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 4, 8), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :rs_cyrl
+
+    holidays = Holidays.on(Date.civil(2019, 4, 28), [:rs_cyrl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Васкрс" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 4, 28), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :rs_cyrl
+
+
+    holidays = Holidays.on(Date.civil(2017, 4, 17), [:rs_cyrl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Васкрсни понедељак" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 4, 17), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :rs_cyrl
+
+    holidays = Holidays.on(Date.civil(2018, 4, 9), [:rs_cyrl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Васкрсни понедељак" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 4, 9), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :rs_cyrl
+
+    holidays = Holidays.on(Date.civil(2019, 4, 29), [:rs_cyrl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Васкрсни понедељак" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 4, 29), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :rs_cyrl
+
 
   end
 end

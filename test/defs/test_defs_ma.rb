@@ -7,23 +7,68 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class MaDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_ma
-    assert_equal "Ras l' âm", (Holidays.on(Date.civil(2007, 1, 1), [:ma], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2007, 1, 1), [:ma], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Ras l' âm" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ma
 
-    assert_equal "Takdim watikat al-istiqlal", (Holidays.on(Date.civil(2007, 1, 11), [:ma], [:informal])[0] || {})[:name]
 
-    assert_equal "Eid Ash-Shughl", (Holidays.on(Date.civil(2007, 5, 1), [:ma], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2007, 1, 11), [:ma], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Takdim watikat al-istiqlal" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 1, 11), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ma
 
-    assert_equal "Eid Al-Ârch", (Holidays.on(Date.civil(2007, 7, 30), [:ma], [:informal])[0] || {})[:name]
 
-    assert_equal "Zikra Oued Ed-Dahab", (Holidays.on(Date.civil(2007, 8, 14), [:ma], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2007, 5, 1), [:ma], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Eid Ash-Shughl" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 5, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ma
 
-    assert_equal "Thawrat al malik wa shâab", (Holidays.on(Date.civil(2007, 8, 20), [:ma], [:informal])[0] || {})[:name]
 
-    assert_equal "Eid Al Milad", (Holidays.on(Date.civil(2007, 8, 21), [:ma], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2007, 7, 30), [:ma], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Eid Al-Ârch" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 7, 30), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ma
 
-    assert_equal "Eid Al Massira Al Khadra", (Holidays.on(Date.civil(2007, 11, 6), [:ma], [:informal])[0] || {})[:name]
 
-    assert_equal "Eid Al Istiqulal", (Holidays.on(Date.civil(2007, 11, 18), [:ma], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2007, 8, 14), [:ma], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Zikra Oued Ed-Dahab" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 8, 14), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ma
+
+
+    holidays = Holidays.on(Date.civil(2007, 8, 20), [:ma], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Thawrat al malik wa shâab" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 8, 20), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ma
+
+
+    holidays = Holidays.on(Date.civil(2007, 8, 21), [:ma], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Eid Al Milad" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 8, 21), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ma
+
+
+    holidays = Holidays.on(Date.civil(2007, 11, 6), [:ma], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Eid Al Massira Al Khadra" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 11, 6), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ma
+
+
+    holidays = Holidays.on(Date.civil(2007, 11, 18), [:ma], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Eid Al Istiqulal" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 11, 18), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ma
+
 
   end
 end

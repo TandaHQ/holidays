@@ -9,15 +9,21 @@ module Holidays
             date = "Date.civil(#{d.year}, #{d.month}, #{d.day})"
 
             holiday_call = "Holidays.on(#{date}, #{t.regions}"
-
-            if t.options
-              holiday_call += ", #{decorate_options(t.options)}"
-            end
+            holiday_call += ", #{decorate_options(t.options)}" if t.options
+            holiday_call += ")"
 
             if t.holiday?
-              src += "assert_equal \"#{t.name}\", (#{holiday_call})[0] || {})[:name]\n"
+              src += "    holidays = #{holiday_call}\n"
+              src += "    matching_holiday = holidays.find { |hol| hol[:name] == \"#{t.name}\" }\n"
+              src += "    assert_not_nil matching_holiday\n"
+              src += "    assert_equal #{date}, matching_holiday[:date]\n"
+              t.regions.each do |region|
+                src += "    assert_includes matching_holiday[:regions], :#{region}\n"
+              end
+              src += "\n"
+
             else
-              src += "assert_nil (#{holiday_call})[0] || {})[:name]\n"
+              src += "    assert_nil (#{holiday_call}[0] || {})[:name]\n"
             end
           end
 
