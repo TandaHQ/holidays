@@ -124,24 +124,22 @@ class AuDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_includes matching_holiday[:regions], :au_nt
 
 
-    holidays = Holidays.on(Date.civil(2026, 4, 25), [:au_nsw, :au_act, :au_vic, :au_tas, :au_sa, :au_wa, :au_nt])
+    holidays = Holidays.on(Date.civil(2026, 4, 25), [:au_nsw, :au_vic, :au_tas, :au_sa, :au_wa, :au_nt])
     matching_holiday = holidays.find { |hol| hol[:name] == "ANZAC Day" }
     assert_not_nil matching_holiday
     assert_equal Date.civil(2026, 4, 25), matching_holiday[:date]
     assert_includes matching_holiday[:regions], :au_nsw
-    assert_includes matching_holiday[:regions], :au_act
     assert_includes matching_holiday[:regions], :au_vic
     assert_includes matching_holiday[:regions], :au_tas
     assert_includes matching_holiday[:regions], :au_sa
     assert_includes matching_holiday[:regions], :au_wa
     assert_includes matching_holiday[:regions], :au_nt
 
-    holidays = Holidays.on(Date.civil(2027, 4, 25), [:au_nsw, :au_act, :au_vic, :au_tas, :au_sa, :au_wa, :au_nt])
+    holidays = Holidays.on(Date.civil(2027, 4, 25), [:au_nsw, :au_vic, :au_tas, :au_sa, :au_wa, :au_nt])
     matching_holiday = holidays.find { |hol| hol[:name] == "ANZAC Day" }
     assert_not_nil matching_holiday
     assert_equal Date.civil(2027, 4, 25), matching_holiday[:date]
     assert_includes matching_holiday[:regions], :au_nsw
-    assert_includes matching_holiday[:regions], :au_act
     assert_includes matching_holiday[:regions], :au_vic
     assert_includes matching_holiday[:regions], :au_tas
     assert_includes matching_holiday[:regions], :au_sa
@@ -149,65 +147,75 @@ class AuDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_includes matching_holiday[:regions], :au_nt
 
 
-    holidays = Holidays.on(Date.civil(2026, 4, 25), [:au_qld])
+    holidays = Holidays.on(Date.civil(2026, 4, 25), [:au_qld, :au_act])
     matching_holiday = holidays.find { |hol| hol[:name] == "ANZAC Day" }
     assert_not_nil matching_holiday
     assert_equal Date.civil(2026, 4, 25), matching_holiday[:date]
     assert_includes matching_holiday[:regions], :au_qld
+    assert_includes matching_holiday[:regions], :au_act
 
-    holidays = Holidays.on(Date.civil(2027, 4, 26), [:au_qld])
+    holidays = Holidays.on(Date.civil(2027, 4, 26), [:au_qld, :au_act])
     matching_holiday = holidays.find { |hol| hol[:name] == "ANZAC Day" }
     assert_not_nil matching_holiday
     assert_equal Date.civil(2027, 4, 26), matching_holiday[:date]
     assert_includes matching_holiday[:regions], :au_qld
+    assert_includes matching_holiday[:regions], :au_act
 
-    holidays = Holidays.on(Date.civil(2028, 4, 25), [:au_qld])
+    holidays = Holidays.on(Date.civil(2028, 4, 25), [:au_qld, :au_act])
     matching_holiday = holidays.find { |hol| hol[:name] == "ANZAC Day" }
     assert_not_nil matching_holiday
     assert_equal Date.civil(2028, 4, 25), matching_holiday[:date]
     assert_includes matching_holiday[:regions], :au_qld
+    assert_includes matching_holiday[:regions], :au_act
 
-    holidays = Holidays.on(Date.civil(2029, 4, 25), [:au_qld])
+    holidays = Holidays.on(Date.civil(2029, 4, 25), [:au_qld, :au_act])
     matching_holiday = holidays.find { |hol| hol[:name] == "ANZAC Day" }
     assert_not_nil matching_holiday
     assert_equal Date.civil(2029, 4, 25), matching_holiday[:date]
     assert_includes matching_holiday[:regions], :au_qld
+    assert_includes matching_holiday[:regions], :au_act
 
-    holidays = Holidays.on(Date.civil(2030, 4, 25), [:au_qld])
+    holidays = Holidays.on(Date.civil(2030, 4, 25), [:au_qld, :au_act])
     matching_holiday = holidays.find { |hol| hol[:name] == "ANZAC Day" }
     assert_not_nil matching_holiday
     assert_equal Date.civil(2030, 4, 25), matching_holiday[:date]
     assert_includes matching_holiday[:regions], :au_qld
+    assert_includes matching_holiday[:regions], :au_act
 
-    holidays = Holidays.on(Date.civil(2031, 4, 25), [:au_qld])
+    holidays = Holidays.on(Date.civil(2031, 4, 25), [:au_qld, :au_act])
     matching_holiday = holidays.find { |hol| hol[:name] == "ANZAC Day" }
     assert_not_nil matching_holiday
     assert_equal Date.civil(2031, 4, 25), matching_holiday[:date]
     assert_includes matching_holiday[:regions], :au_qld
+    assert_includes matching_holiday[:regions], :au_act
 
-    holidays = Holidays.on(Date.civil(2032, 4, 26), [:au_qld])
+    holidays = Holidays.on(Date.civil(2032, 4, 26), [:au_qld, :au_act])
     matching_holiday = holidays.find { |hol| hol[:name] == "ANZAC Day" }
     assert_not_nil matching_holiday
     assert_equal Date.civil(2032, 4, 26), matching_holiday[:date]
     assert_includes matching_holiday[:regions], :au_qld
+    assert_includes matching_holiday[:regions], :au_act
 
-    holidays = Holidays.on(Date.civil(2033, 4, 25), [:au_qld])
+    holidays = Holidays.on(Date.civil(2033, 4, 25), [:au_qld, :au_act])
     matching_holiday = holidays.find { |hol| hol[:name] == "ANZAC Day" }
     assert_not_nil matching_holiday
     assert_equal Date.civil(2033, 4, 25), matching_holiday[:date]
     assert_includes matching_holiday[:regions], :au_qld
+    assert_includes matching_holiday[:regions], :au_act
 
-    holidays = Holidays.on(Date.civil(2034, 4, 25), [:au_qld])
+    holidays = Holidays.on(Date.civil(2034, 4, 25), [:au_qld, :au_act])
     matching_holiday = holidays.find { |hol| hol[:name] == "ANZAC Day" }
     assert_not_nil matching_holiday
     assert_equal Date.civil(2034, 4, 25), matching_holiday[:date]
     assert_includes matching_holiday[:regions], :au_qld
+    assert_includes matching_holiday[:regions], :au_act
 
-    holidays = Holidays.on(Date.civil(2035, 4, 25), [:au_qld])
+    holidays = Holidays.on(Date.civil(2035, 4, 25), [:au_qld, :au_act])
     matching_holiday = holidays.find { |hol| hol[:name] == "ANZAC Day" }
     assert_not_nil matching_holiday
     assert_equal Date.civil(2035, 4, 25), matching_holiday[:date]
     assert_includes matching_holiday[:regions], :au_qld
+    assert_includes matching_holiday[:regions], :au_act
 
 
     holidays = Holidays.on(Date.civil(2021, 4, 26), [:au_wa])
