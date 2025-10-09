@@ -230,6 +230,12 @@ class AuDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_equal Date.civil(2026, 4, 27), matching_holiday[:date]
     assert_includes matching_holiday[:regions], :au_wa
 
+    holidays = Holidays.on(Date.civil(2027, 4, 26), [:au_wa])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Additional public holiday for ANZAC Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2027, 4, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :au_wa
+
 
     holidays = Holidays.on(Date.civil(2015, 4, 25), [:au_wa])
     matching_holiday = holidays.find { |hol| hol[:name] == "ANZAC Day" }
