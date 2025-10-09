@@ -40,7 +40,7 @@ EndOfTests
           out = ""
 
           tests.each do |t|
-            out << "\n    " + @decorator.call(t)
+            out << "\n" + @decorator.call(t)
           end
 
           out

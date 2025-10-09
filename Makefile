@@ -6,7 +6,7 @@ setup: update_defs
 generate:
 	bundle exec rake generate
 
-test:
+test: generate
 	bundle exec rake test
 
 console:
@@ -14,6 +14,9 @@ console:
 
 test_region:
 	bundle exec rake test_region $(REGION)
+
+test_au:
+	$(MAKE) test_region REGION=au
 
 build: clean
 	bundle exec gem build holidays.gemspec

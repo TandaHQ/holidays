@@ -7,14 +7,44 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class LrDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_lr
-    assert_equal "Decoration Day", (Holidays.on(Date.civil(2018, 3, 14), [:lr])[0] || {})[:name]
-assert_equal "Decoration Day", (Holidays.on(Date.civil(2019, 3, 13), [:lr])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2018, 3, 14), [:lr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Decoration Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 3, 14), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lr
 
-    assert_equal "Fast and Prayer Day", (Holidays.on(Date.civil(2018, 4, 13), [:lr])[0] || {})[:name]
-assert_equal "Fast and Prayer Day", (Holidays.on(Date.civil(2020, 4, 10), [:lr])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2019, 3, 13), [:lr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Decoration Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 3, 13), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lr
 
-    assert_equal "National Thanksgiving Day", (Holidays.on(Date.civil(2018, 11, 1), [:lr])[0] || {})[:name]
-assert_equal "National Thanksgiving Day", (Holidays.on(Date.civil(2019, 11, 7), [:lr])[0] || {})[:name]
+
+    holidays = Holidays.on(Date.civil(2018, 4, 13), [:lr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Fast and Prayer Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 4, 13), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lr
+
+    holidays = Holidays.on(Date.civil(2020, 4, 10), [:lr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Fast and Prayer Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2020, 4, 10), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lr
+
+
+    holidays = Holidays.on(Date.civil(2018, 11, 1), [:lr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "National Thanksgiving Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 11, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lr
+
+    holidays = Holidays.on(Date.civil(2019, 11, 7), [:lr])
+    matching_holiday = holidays.find { |hol| hol[:name] == "National Thanksgiving Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 11, 7), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :lr
+
 
   end
 end

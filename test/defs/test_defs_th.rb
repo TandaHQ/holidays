@@ -7,35 +7,110 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class ThDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_th
-    assert_equal "New Year's Day", (Holidays.on(Date.civil(2016, 1, 1), [:th])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 1, 1), [:th])
+    matching_holiday = holidays.find { |hol| hol[:name] == "New Year's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :th
 
-    assert_equal "Makha Bucha Day", (Holidays.on(Date.civil(2016, 3, 1), [:th])[0] || {})[:name]
 
-    assert_equal "Chakri Memorial Day", (Holidays.on(Date.civil(2016, 4, 6), [:th])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 3, 1), [:th])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Makha Bucha Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 3, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :th
 
-    assert_equal "Songkran Day", (Holidays.on(Date.civil(2016, 4, 13), [:th])[0] || {})[:name]
 
-    assert_equal "Songkran Festival", (Holidays.on(Date.civil(2016, 4, 16), [:th])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 4, 6), [:th])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Chakri Memorial Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 4, 6), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :th
 
-    assert_equal "National Labour Day", (Holidays.on(Date.civil(2016, 5, 1), [:th])[0] || {})[:name]
 
-    assert_equal "Wisakha Bucha Day", (Holidays.on(Date.civil(2016, 5, 29), [:th])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 4, 13), [:th])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Songkran Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 4, 13), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :th
 
-    assert_equal "Asarnha Bucha Day", (Holidays.on(Date.civil(2016, 7, 27), [:th])[0] || {})[:name]
 
-    assert_equal "H.M. King Maha Vajiralongkorn Bodindradebayavarangkun's Birthday", (Holidays.on(Date.civil(2016, 7, 28), [:th], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 4, 16), [:th])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Songkran Festival" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 4, 16), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :th
 
-    assert_equal "H.M. Queen Sirikit's Birthday", (Holidays.on(Date.civil(2016, 8, 12), [:th], [:observed])[0] || {})[:name]
 
-    assert_equal "Commemoration of the Passing King Bhumibol", (Holidays.on(Date.civil(2016, 10, 13), [:th], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 5, 1), [:th])
+    matching_holiday = holidays.find { |hol| hol[:name] == "National Labour Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 5, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :th
 
-    assert_equal "Chulalongkorn Day", (Holidays.on(Date.civil(2016, 10, 23), [:th])[0] || {})[:name]
 
-    assert_equal "Late King Bhumibol Adulyadej's Birthday, National Day and National Father's Day", (Holidays.on(Date.civil(2016, 12, 5), [:th])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 5, 29), [:th])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Wisakha Bucha Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 5, 29), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :th
 
-    assert_equal "Constitution Day", (Holidays.on(Date.civil(2016, 12, 10), [:th])[0] || {})[:name]
 
-    assert_equal "Year's End Day", (Holidays.on(Date.civil(2016, 12, 31), [:th])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 7, 27), [:th])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Asarnha Bucha Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 7, 27), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :th
+
+
+    holidays = Holidays.on(Date.civil(2016, 7, 28), [:th], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "H.M. King Maha Vajiralongkorn Bodindradebayavarangkun's Birthday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 7, 28), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :th
+
+
+    holidays = Holidays.on(Date.civil(2016, 8, 12), [:th], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "H.M. Queen Sirikit's Birthday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 8, 12), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :th
+
+
+    holidays = Holidays.on(Date.civil(2016, 10, 13), [:th], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Commemoration of the Passing King Bhumibol" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 10, 13), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :th
+
+
+    holidays = Holidays.on(Date.civil(2016, 10, 23), [:th])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Chulalongkorn Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 10, 23), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :th
+
+
+    holidays = Holidays.on(Date.civil(2016, 12, 5), [:th])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Late King Bhumibol Adulyadej's Birthday, National Day and National Father's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 12, 5), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :th
+
+
+    holidays = Holidays.on(Date.civil(2016, 12, 10), [:th])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Constitution Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 12, 10), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :th
+
+
+    holidays = Holidays.on(Date.civil(2016, 12, 31), [:th])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Year's End Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 12, 31), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :th
+
 
   end
 end

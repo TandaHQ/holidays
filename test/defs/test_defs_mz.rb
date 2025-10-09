@@ -7,25 +7,75 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class MzDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_mz
-    assert_equal "New Year's Day", (Holidays.on(Date.civil(2017, 1, 1), [:mz])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 1, 1), [:mz])
+    matching_holiday = holidays.find { |hol| hol[:name] == "New Year's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mz
 
-    assert_equal "New Year's Day", (Holidays.on(Date.civil(2017, 1, 2), [:mz], [:observed])[0] || {})[:name]
 
-    assert_equal "Heroes' Day", (Holidays.on(Date.civil(2017, 2, 3), [:mz])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 1, 2), [:mz], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "New Year's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 1, 2), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mz
 
-    assert_equal "Women's Day", (Holidays.on(Date.civil(2017, 4, 7), [:mz])[0] || {})[:name]
 
-    assert_equal "Worker's Day", (Holidays.on(Date.civil(2017, 5, 1), [:mz])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 2, 3), [:mz])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Heroes' Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 2, 3), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mz
 
-    assert_equal "Independence Day", (Holidays.on(Date.civil(2017, 6, 25), [:mz])[0] || {})[:name]
 
-    assert_equal "Victory Day", (Holidays.on(Date.civil(2017, 9, 7), [:mz])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 4, 7), [:mz])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Women's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 4, 7), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mz
 
-    assert_equal "Revolution Day", (Holidays.on(Date.civil(2017, 9, 25), [:mz])[0] || {})[:name]
 
-    assert_equal "Day of Peace and Reconciliation", (Holidays.on(Date.civil(2017, 10, 4), [:mz])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2017, 5, 1), [:mz])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Worker's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 5, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mz
 
-    assert_equal "Family Day", (Holidays.on(Date.civil(2017, 12, 25), [:mz])[0] || {})[:name]
+
+    holidays = Holidays.on(Date.civil(2017, 6, 25), [:mz])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Independence Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 6, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mz
+
+
+    holidays = Holidays.on(Date.civil(2017, 9, 7), [:mz])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Victory Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 9, 7), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mz
+
+
+    holidays = Holidays.on(Date.civil(2017, 9, 25), [:mz])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Revolution Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 9, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mz
+
+
+    holidays = Holidays.on(Date.civil(2017, 10, 4), [:mz])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Day of Peace and Reconciliation" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 10, 4), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mz
+
+
+    holidays = Holidays.on(Date.civil(2017, 12, 25), [:mz])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Family Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mz
+
 
   end
 end

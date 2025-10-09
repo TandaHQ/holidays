@@ -7,16 +7,46 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class ViDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_vi
-    assert_equal "Tết dương lịch", (Holidays.on(Date.civil(2014, 1, 1), [:vi])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2014, 1, 1), [:vi])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Tết dương lịch" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2014, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :vi
 
-    assert_equal "Ngày Giải phóng miền Nam, thống nhất đất nước", (Holidays.on(Date.civil(2014, 4, 30), [:vi])[0] || {})[:name]
 
-    assert_equal "Ngày Quốc tế Lao động", (Holidays.on(Date.civil(2014, 5, 1), [:vi])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2014, 4, 30), [:vi])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Ngày Giải phóng miền Nam, thống nhất đất nước" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2014, 4, 30), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :vi
 
-    assert_equal "Quốc khánh", (Holidays.on(Date.civil(2014, 9, 2), [:vi])[0] || {})[:name]
 
-    assert_equal "Giỗ tổ Hùng Vương", (Holidays.on(Date.civil(2017, 4, 6), [:vi])[0] || {})[:name]
-assert_equal "Giỗ tổ Hùng Vương", (Holidays.on(Date.civil(2018, 3, 27), [:vi])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2014, 5, 1), [:vi])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Ngày Quốc tế Lao động" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2014, 5, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :vi
+
+
+    holidays = Holidays.on(Date.civil(2014, 9, 2), [:vi])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Quốc khánh" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2014, 9, 2), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :vi
+
+
+    holidays = Holidays.on(Date.civil(2017, 4, 6), [:vi])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Giỗ tổ Hùng Vương" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 4, 6), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :vi
+
+    holidays = Holidays.on(Date.civil(2018, 3, 27), [:vi])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Giỗ tổ Hùng Vương" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 3, 27), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :vi
+
 
   end
 end

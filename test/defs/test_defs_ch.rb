@@ -7,39 +7,124 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class ChDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_ch
-    assert_equal "Bundesfeiertag", (Holidays.on(Date.civil(2012, 8, 1), [:ch])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 8, 1), [:ch])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Bundesfeiertag" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 8, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ch
 
-    assert_equal "Weihnachten", (Holidays.on(Date.civil(2012, 12, 25), [:ch])[0] || {})[:name]
 
-    assert_equal "Auffahrt", (Holidays.on(Date.civil(2012, 5, 17), [:ch])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 12, 25), [:ch])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Weihnachten" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ch
 
-    assert_equal "Bundesfeiertag", (Holidays.on(Date.civil(2012, 8, 1), [:ch_zh])[0] || {})[:name]
 
-    assert_equal "Weihnachten", (Holidays.on(Date.civil(2012, 12, 25), [:ch_zh])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 5, 17), [:ch])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Auffahrt" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 5, 17), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ch
 
-    assert_equal "Auffahrt", (Holidays.on(Date.civil(2012, 5, 17), [:ch_zh])[0] || {})[:name]
 
-    assert_equal "Tag der Arbeit", (Holidays.on(Date.civil(2012, 5, 1), [:ch_zh])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 8, 1), [:ch_zh])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Bundesfeiertag" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 8, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ch_zh
 
-    assert_equal "Stefanstag", (Holidays.on(Date.civil(2012, 12, 26), [:ch_zh])[0] || {})[:name]
 
-    assert_equal "Lundi du Jeûne fédéral", (Holidays.on(Date.civil(2012, 9, 17), [:ch_vd])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 12, 25), [:ch_zh])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Weihnachten" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ch_zh
 
-    assert_equal "Lundi du Jeûne fédéral", (Holidays.on(Date.civil(2013, 9, 16), [:ch_vd])[0] || {})[:name]
 
-    assert_equal "Lundi du Jeûne fédéral", (Holidays.on(Date.civil(2014, 9, 22), [:ch_vd])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 5, 17), [:ch_zh])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Auffahrt" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 5, 17), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ch_zh
 
-    assert_equal "Jeûne genevois", (Holidays.on(Date.civil(2012, 9, 6), [:ch_ge])[0] || {})[:name]
 
-    assert_equal "Jeûne genevois", (Holidays.on(Date.civil(2013, 9, 5), [:ch_ge])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 5, 1), [:ch_zh])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Tag der Arbeit" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 5, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ch_zh
 
-    assert_equal "Jeûne genevois", (Holidays.on(Date.civil(2014, 9, 11), [:ch_ge])[0] || {})[:name]
 
-    assert_equal "Näfelser Fahrt", (Holidays.on(Date.civil(2012, 4, 12), [:ch_gl])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 12, 26), [:ch_zh])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Stefanstag" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 12, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ch_zh
 
-    assert_equal "Näfelser Fahrt", (Holidays.on(Date.civil(2013, 4, 4), [:ch_gl])[0] || {})[:name]
 
-    assert_equal "Näfelser Fahrt", (Holidays.on(Date.civil(2014, 4, 3), [:ch_gl])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 9, 17), [:ch_vd])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Lundi du Jeûne fédéral" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 9, 17), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ch_vd
+
+
+    holidays = Holidays.on(Date.civil(2013, 9, 16), [:ch_vd])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Lundi du Jeûne fédéral" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 9, 16), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ch_vd
+
+
+    holidays = Holidays.on(Date.civil(2014, 9, 22), [:ch_vd])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Lundi du Jeûne fédéral" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2014, 9, 22), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ch_vd
+
+
+    holidays = Holidays.on(Date.civil(2012, 9, 6), [:ch_ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Jeûne genevois" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 9, 6), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ch_ge
+
+
+    holidays = Holidays.on(Date.civil(2013, 9, 5), [:ch_ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Jeûne genevois" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 9, 5), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ch_ge
+
+
+    holidays = Holidays.on(Date.civil(2014, 9, 11), [:ch_ge])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Jeûne genevois" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2014, 9, 11), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ch_ge
+
+
+    holidays = Holidays.on(Date.civil(2012, 4, 12), [:ch_gl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Näfelser Fahrt" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 4, 12), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ch_gl
+
+
+    holidays = Holidays.on(Date.civil(2013, 4, 4), [:ch_gl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Näfelser Fahrt" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 4, 4), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ch_gl
+
+
+    holidays = Holidays.on(Date.civil(2014, 4, 3), [:ch_gl])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Näfelser Fahrt" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2014, 4, 3), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ch_gl
+
 
   end
 end

@@ -7,33 +7,98 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class GbDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_gb
-    assert_equal "Good Friday", (Holidays.on(Date.civil(2008, 3, 21), [:gb], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2008, 3, 21), [:gb], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Good Friday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 3, 21), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb
 
-    assert_equal "Early May Bank Holiday", (Holidays.on(Date.civil(2008, 5, 5), [:gb], [:informal])[0] || {})[:name]
 
-    assert_equal "Spring Bank Holiday", (Holidays.on(Date.civil(2008, 5, 26), [:gb], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2008, 5, 5), [:gb], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Early May Bank Holiday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 5, 5), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb
 
-    assert_equal "Spring Bank Holiday", (Holidays.on(Date.civil(2022, 6, 2), [:gb], [:informal])[0] || {})[:name]
 
-    assert_equal "Platinum Jubilee Bank Holiday", (Holidays.on(Date.civil(2022, 6, 3), [:gb], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2008, 5, 26), [:gb], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Spring Bank Holiday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 5, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb
 
-    assert_equal "Guy Fawkes Day", (Holidays.on(Date.civil(2008, 11, 5), [:gb], [:informal])[0] || {})[:name]
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2008, 12, 25), [:gb], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2022, 6, 2), [:gb], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Spring Bank Holiday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2022, 6, 2), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb
+
+
+    holidays = Holidays.on(Date.civil(2022, 6, 3), [:gb], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Platinum Jubilee Bank Holiday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2022, 6, 3), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb
+
+
+    holidays = Holidays.on(Date.civil(2008, 11, 5), [:gb], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Guy Fawkes Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 11, 5), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb
+
+
+    holidays = Holidays.on(Date.civil(2008, 12, 25), [:gb], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Christmas Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb
+
 
     assert_nil (Holidays.on(Date.civil(2022, 12, 25), [:gb], [:informal])[0] || {})[:name]
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2022, 12, 27), [:gb], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2022, 12, 27), [:gb], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Christmas Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2022, 12, 27), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb
 
-    assert_equal "Boxing Day", (Holidays.on(Date.civil(2008, 12, 26), [:gb], [:informal])[0] || {})[:name]
 
-    assert_equal "St. Patrick's Day", (Holidays.on(Date.civil(2008, 3, 17), [:gb_nir], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2008, 12, 26), [:gb], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Boxing Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 12, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb
 
-    assert_equal "St. Andrew's Day", (Holidays.on(Date.civil(2006, 11, 30), [:gb_sct], [:informal])[0] || {})[:name]
 
-    assert_equal "St. Andrew's Day", (Holidays.on(Date.civil(2006, 11, 30), [:gb_sct], [:informal, :observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2008, 3, 17), [:gb_nir], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "St. Patrick's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 3, 17), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_nir
 
-    assert_equal "St. Andrew's Day", (Holidays.on(Date.civil(2002, 12, 2), [:gb_sct], [:informal, :observed])[0] || {})[:name]
+
+    holidays = Holidays.on(Date.civil(2006, 11, 30), [:gb_sct], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "St. Andrew's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2006, 11, 30), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_sct
+
+
+    holidays = Holidays.on(Date.civil(2006, 11, 30), [:gb_sct], [:informal, :observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "St. Andrew's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2006, 11, 30), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_sct
+
+
+    holidays = Holidays.on(Date.civil(2002, 12, 2), [:gb_sct], [:informal, :observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "St. Andrew's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2002, 12, 2), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_sct
+
 
     assert_nil (Holidays.on(Date.civil(2004, 11, 30), [:gb_sct])[0] || {})[:name]
 
@@ -41,75 +106,250 @@ class GbDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_nil (Holidays.on(Date.civil(2006, 11, 30), [:gb_sct])[0] || {})[:name]
 
-    assert_equal "St. Andrew's Day", (Holidays.on(Date.civil(2007, 11, 30), [:gb_sct])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2007, 11, 30), [:gb_sct])
+    matching_holiday = holidays.find { |hol| hol[:name] == "St. Andrew's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 11, 30), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_sct
 
-    assert_equal "St. Andrew's Day", (Holidays.on(Date.civil(2007, 11, 30), [:gb_sct], [:informal])[0] || {})[:name]
 
-    assert_equal "St. Andrew's Day", (Holidays.on(Date.civil(2007, 11, 30), [:gb_sct], [:informal, :observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2007, 11, 30), [:gb_sct], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "St. Andrew's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 11, 30), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_sct
 
-    assert_equal "St. Andrew's Day", (Holidays.on(Date.civil(2016, 11, 30), [:gb_sct])[0] || {})[:name]
 
-    assert_equal "St. Andrew's Day", (Holidays.on(Date.civil(2019, 11, 30), [:gb_sct])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2007, 11, 30), [:gb_sct], [:informal, :observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "St. Andrew's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2007, 11, 30), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_sct
 
-    assert_equal "St. Andrew's Day", (Holidays.on(Date.civil(2019, 11, 30), [:gb_sct])[0] || {})[:name]
 
-    assert_equal "St. Andrew's Day", (Holidays.on(Date.civil(2019, 12, 2), [:gb_sct], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2016, 11, 30), [:gb_sct])
+    matching_holiday = holidays.find { |hol| hol[:name] == "St. Andrew's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 11, 30), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_sct
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2008, 12, 25), [:gb_], [:observed])[0] || {})[:name]
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2009, 12, 25), [:gb_], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2019, 11, 30), [:gb_sct])
+    matching_holiday = holidays.find { |hol| hol[:name] == "St. Andrew's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 11, 30), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_sct
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2010, 12, 27), [:gb_], [:observed])[0] || {})[:name]
 
-    assert_equal "Boxing Day", (Holidays.on(Date.civil(2008, 12, 26), [:gb_], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2019, 11, 30), [:gb_sct])
+    matching_holiday = holidays.find { |hol| hol[:name] == "St. Andrew's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 11, 30), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_sct
 
-    assert_equal "Boxing Day", (Holidays.on(Date.civil(2009, 12, 28), [:gb_], [:observed])[0] || {})[:name]
 
-    assert_equal "Boxing Day", (Holidays.on(Date.civil(2010, 12, 28), [:gb_], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2019, 12, 2), [:gb_sct], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "St. Andrew's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2019, 12, 2), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_sct
 
-    assert_equal "Boxing Day", (Holidays.on(Date.civil(2011, 12, 27), [:gb_], [:observed])[0] || {})[:name]
 
-    assert_equal "New Year's Day", (Holidays.on(Date.civil(2010, 1, 1), [:gb], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2008, 12, 25), [:gb_], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Christmas Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_
 
-    assert_equal "New Year's Day", (Holidays.on(Date.civil(2011, 1, 3), [:gb], [:observed])[0] || {})[:name]
 
-    assert_equal "New Year's Day", (Holidays.on(Date.civil(2012, 1, 2), [:gb], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2009, 12, 25), [:gb_], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Christmas Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2009, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_
 
-    assert_equal "2nd January", (Holidays.on(Date.civil(2010, 1, 4), [:gb_sct], [:observed])[0] || {})[:name]
 
-    assert_equal "2nd January", (Holidays.on(Date.civil(2011, 1, 4), [:gb_sct], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2010, 12, 27), [:gb_], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Christmas Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2010, 12, 27), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_
 
-    assert_equal "2nd January", (Holidays.on(Date.civil(2012, 1, 3), [:gb_sct], [:observed])[0] || {})[:name]
 
-    assert_equal "2nd January", (Holidays.on(Date.civil(2013, 1, 2), [:gb_sct], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2008, 12, 26), [:gb_], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Boxing Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 12, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_
 
-    assert_equal "2nd January", (Holidays.on(Date.civil(2014, 1, 2), [:gb_sct], [:observed])[0] || {})[:name]
 
-    assert_equal "Easter Monday", (Holidays.on(Date.civil(2008, 3, 24), [:gb_wls])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2009, 12, 28), [:gb_], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Boxing Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2009, 12, 28), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_
 
-    assert_equal "Summer Bank Holiday", (Holidays.on(Date.civil(2008, 8, 25), [:gb_wls])[0] || {})[:name]
 
-    assert_equal "Easter Monday", (Holidays.on(Date.civil(2008, 3, 24), [:gb_eng])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2010, 12, 28), [:gb_], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Boxing Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2010, 12, 28), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_
 
-    assert_equal "Summer Bank Holiday", (Holidays.on(Date.civil(2008, 8, 25), [:gb_eng])[0] || {})[:name]
 
-    assert_equal "Easter Monday", (Holidays.on(Date.civil(2008, 3, 24), [:gb_nir])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2011, 12, 27), [:gb_], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Boxing Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2011, 12, 27), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_
 
-    assert_equal "Summer Bank Holiday", (Holidays.on(Date.civil(2008, 8, 25), [:gb_nir])[0] || {})[:name]
 
-    assert_equal "Easter Monday", (Holidays.on(Date.civil(2008, 3, 24), [:gb_eaw])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2010, 1, 1), [:gb], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "New Year's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2010, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb
 
-    assert_equal "Summer Bank Holiday", (Holidays.on(Date.civil(2008, 8, 25), [:gb_eaw])[0] || {})[:name]
 
-    assert_equal "Easter Monday", (Holidays.on(Date.civil(2008, 3, 24), [:gb_])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2011, 1, 3), [:gb], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "New Year's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2011, 1, 3), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb
 
-    assert_equal "Summer Bank Holiday", (Holidays.on(Date.civil(2008, 8, 25), [:gb_])[0] || {})[:name]
 
-    assert_equal "Liberation Day", (Holidays.on(Date.civil(2018, 5, 9), [:je])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 1, 2), [:gb], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "New Year's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 1, 2), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb
 
-    assert_equal "Easter Monday", (Holidays.on(Date.civil(2018, 4, 2), [:je])[0] || {})[:name]
 
-    assert_equal "Summer Bank Holiday", (Holidays.on(Date.civil(2018, 8, 27), [:je])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2010, 1, 4), [:gb_sct], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "2nd January" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2010, 1, 4), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_sct
+
+
+    holidays = Holidays.on(Date.civil(2011, 1, 4), [:gb_sct], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "2nd January" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2011, 1, 4), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_sct
+
+
+    holidays = Holidays.on(Date.civil(2012, 1, 3), [:gb_sct], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "2nd January" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 1, 3), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_sct
+
+
+    holidays = Holidays.on(Date.civil(2013, 1, 2), [:gb_sct], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "2nd January" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 1, 2), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_sct
+
+
+    holidays = Holidays.on(Date.civil(2014, 1, 2), [:gb_sct], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "2nd January" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2014, 1, 2), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_sct
+
+
+    holidays = Holidays.on(Date.civil(2008, 3, 24), [:gb_wls])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Easter Monday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 3, 24), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_wls
+
+
+    holidays = Holidays.on(Date.civil(2008, 8, 25), [:gb_wls])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Summer Bank Holiday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 8, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_wls
+
+
+    holidays = Holidays.on(Date.civil(2008, 3, 24), [:gb_eng])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Easter Monday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 3, 24), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_eng
+
+
+    holidays = Holidays.on(Date.civil(2008, 8, 25), [:gb_eng])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Summer Bank Holiday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 8, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_eng
+
+
+    holidays = Holidays.on(Date.civil(2008, 3, 24), [:gb_nir])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Easter Monday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 3, 24), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_nir
+
+
+    holidays = Holidays.on(Date.civil(2008, 8, 25), [:gb_nir])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Summer Bank Holiday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 8, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_nir
+
+
+    holidays = Holidays.on(Date.civil(2008, 3, 24), [:gb_eaw])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Easter Monday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 3, 24), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_eaw
+
+
+    holidays = Holidays.on(Date.civil(2008, 8, 25), [:gb_eaw])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Summer Bank Holiday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 8, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_eaw
+
+
+    holidays = Holidays.on(Date.civil(2008, 3, 24), [:gb_])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Easter Monday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 3, 24), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_
+
+
+    holidays = Holidays.on(Date.civil(2008, 8, 25), [:gb_])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Summer Bank Holiday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2008, 8, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_
+
+
+    holidays = Holidays.on(Date.civil(2018, 5, 9), [:je])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Liberation Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 5, 9), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :je
+
+
+    holidays = Holidays.on(Date.civil(2018, 4, 2), [:je])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Easter Monday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 4, 2), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :je
+
+
+    holidays = Holidays.on(Date.civil(2018, 8, 27), [:je])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Summer Bank Holiday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2018, 8, 27), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :je
+
 
   end
 end

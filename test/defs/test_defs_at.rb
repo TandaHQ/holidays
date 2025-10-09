@@ -7,21 +7,61 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class AtDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_at
-    assert_equal "Neujahrstag", (Holidays.on(Date.civil(2009, 1, 1), [:at], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2009, 1, 1), [:at], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Neujahrstag" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2009, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :at
 
-    assert_equal "Ostermontag", (Holidays.on(Date.civil(2009, 4, 13), [:at], [:informal])[0] || {})[:name]
 
-    assert_equal "Christi Himmelfahrt", (Holidays.on(Date.civil(2009, 5, 21), [:at], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2009, 4, 13), [:at], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Ostermontag" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2009, 4, 13), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :at
 
-    assert_equal "Pfingstmontag", (Holidays.on(Date.civil(2009, 6, 1), [:at], [:informal])[0] || {})[:name]
 
-    assert_equal "Nationalfeiertag", (Holidays.on(Date.civil(2009, 10, 26), [:at], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2009, 5, 21), [:at], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Christi Himmelfahrt" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2009, 5, 21), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :at
 
-    assert_equal "Mariä Empfängnis", (Holidays.on(Date.civil(2009, 12, 8), [:at], [:informal])[0] || {})[:name]
 
-    assert_equal "1. Weihnachtstag", (Holidays.on(Date.civil(2009, 12, 25), [:at], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2009, 6, 1), [:at], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Pfingstmontag" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2009, 6, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :at
 
-    assert_equal "2. Weihnachtstag", (Holidays.on(Date.civil(2009, 12, 26), [:at], [:informal])[0] || {})[:name]
+
+    holidays = Holidays.on(Date.civil(2009, 10, 26), [:at], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Nationalfeiertag" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2009, 10, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :at
+
+
+    holidays = Holidays.on(Date.civil(2009, 12, 8), [:at], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Mariä Empfängnis" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2009, 12, 8), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :at
+
+
+    holidays = Holidays.on(Date.civil(2009, 12, 25), [:at], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "1. Weihnachtstag" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2009, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :at
+
+
+    holidays = Holidays.on(Date.civil(2009, 12, 26), [:at], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "2. Weihnachtstag" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2009, 12, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :at
+
 
     assert_nil (Holidays.on(Date.civil(2010, 5, 8), [:at])[0] || {})[:name]
 

@@ -7,35 +7,110 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class SkDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_sk
-    assert_equal "Nový rok", (Holidays.on(Date.civil(2013, 1, 1), [:sk], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2013, 1, 1), [:sk], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Nový rok" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :sk
 
-    assert_equal "Zjavenie Pána (Traja králi)", (Holidays.on(Date.civil(2013, 1, 6), [:sk], [:informal])[0] || {})[:name]
 
-    assert_equal "Veľký piatok", (Holidays.on(Date.civil(2013, 3, 29), [:sk], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2013, 1, 6), [:sk], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Zjavenie Pána (Traja králi)" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 1, 6), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :sk
 
-    assert_equal "Veľkonočný pondelok", (Holidays.on(Date.civil(2013, 4, 1), [:sk], [:informal])[0] || {})[:name]
 
-    assert_equal "Sviatok práce", (Holidays.on(Date.civil(2013, 5, 1), [:sk], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2013, 3, 29), [:sk], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Veľký piatok" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 3, 29), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :sk
 
-    assert_equal "Deň víťazstva nad fašizmom", (Holidays.on(Date.civil(2013, 5, 8), [:sk], [:informal])[0] || {})[:name]
 
-    assert_equal "Sviatok svätého Cyrila a svätého Metoda", (Holidays.on(Date.civil(2013, 7, 5), [:sk], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2013, 4, 1), [:sk], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Veľkonočný pondelok" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 4, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :sk
 
-    assert_equal "Výročie Slovenského národného povstania", (Holidays.on(Date.civil(2013, 8, 29), [:sk], [:informal])[0] || {})[:name]
 
-    assert_equal "Deň Ústavy Slovenskej republiky", (Holidays.on(Date.civil(2013, 9, 1), [:sk], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2013, 5, 1), [:sk], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Sviatok práce" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 5, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :sk
 
-    assert_equal "Sedembolestná Panna Mária", (Holidays.on(Date.civil(2013, 9, 15), [:sk], [:informal])[0] || {})[:name]
 
-    assert_equal "Sviatok všetkých svätých", (Holidays.on(Date.civil(2013, 11, 1), [:sk], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2013, 5, 8), [:sk], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Deň víťazstva nad fašizmom" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 5, 8), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :sk
 
-    assert_equal "Deň boja za slobodu a demokraciu", (Holidays.on(Date.civil(2013, 11, 17), [:sk], [:informal])[0] || {})[:name]
 
-    assert_equal "Štedrý deň", (Holidays.on(Date.civil(2013, 12, 24), [:sk], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2013, 7, 5), [:sk], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Sviatok svätého Cyrila a svätého Metoda" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 7, 5), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :sk
 
-    assert_equal "1. sviatok vianočný", (Holidays.on(Date.civil(2013, 12, 25), [:sk], [:informal])[0] || {})[:name]
 
-    assert_equal "2. sviatok vianočný", (Holidays.on(Date.civil(2013, 12, 26), [:sk], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2013, 8, 29), [:sk], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Výročie Slovenského národného povstania" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 8, 29), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :sk
+
+
+    holidays = Holidays.on(Date.civil(2013, 9, 1), [:sk], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Deň Ústavy Slovenskej republiky" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 9, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :sk
+
+
+    holidays = Holidays.on(Date.civil(2013, 9, 15), [:sk], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Sedembolestná Panna Mária" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 9, 15), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :sk
+
+
+    holidays = Holidays.on(Date.civil(2013, 11, 1), [:sk], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Sviatok všetkých svätých" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 11, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :sk
+
+
+    holidays = Holidays.on(Date.civil(2013, 11, 17), [:sk], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Deň boja za slobodu a demokraciu" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 11, 17), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :sk
+
+
+    holidays = Holidays.on(Date.civil(2013, 12, 24), [:sk], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Štedrý deň" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 12, 24), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :sk
+
+
+    holidays = Holidays.on(Date.civil(2013, 12, 25), [:sk], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "1. sviatok vianočný" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :sk
+
+
+    holidays = Holidays.on(Date.civil(2013, 12, 26), [:sk], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "2. sviatok vianočný" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 12, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :sk
+
 
   end
 end

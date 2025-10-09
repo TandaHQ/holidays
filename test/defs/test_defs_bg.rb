@@ -7,35 +7,110 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class BgDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_bg
-    assert_equal "New Year's Day", (Holidays.on(Date.civil(2015, 1, 1), [:bg_en])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2015, 1, 1), [:bg_en])
+    matching_holiday = holidays.find { |hol| hol[:name] == "New Year's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :bg_en
 
-    assert_equal "Liberation Day", (Holidays.on(Date.civil(2015, 3, 3), [:bg_en])[0] || {})[:name]
 
-    assert_equal "Good Friday", (Holidays.on(Date.civil(2015, 3, 28), [:bg_en])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2015, 3, 3), [:bg_en])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Liberation Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 3, 3), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :bg_en
 
-    assert_equal "Holy Saturday", (Holidays.on(Date.civil(2015, 3, 29), [:bg_en])[0] || {})[:name]
 
-    assert_equal "Easter Sunday", (Holidays.on(Date.civil(2015, 3, 30), [:bg_en])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2015, 3, 28), [:bg_en])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Good Friday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 3, 28), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :bg_en
 
-    assert_equal "Easter Monday", (Holidays.on(Date.civil(2015, 3, 31), [:bg_en])[0] || {})[:name]
 
-    assert_equal "Labour Day", (Holidays.on(Date.civil(2015, 5, 1), [:bg_en])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2015, 3, 29), [:bg_en])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Holy Saturday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 3, 29), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :bg_en
 
-    assert_equal "St. George's Day", (Holidays.on(Date.civil(2015, 5, 6), [:bg_en])[0] || {})[:name]
 
-    assert_equal "Slavic Literacy Day", (Holidays.on(Date.civil(2015, 5, 24), [:bg_en])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2015, 3, 30), [:bg_en])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Easter Sunday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 3, 30), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :bg_en
 
-    assert_equal "Unification Day", (Holidays.on(Date.civil(2015, 9, 6), [:bg_en])[0] || {})[:name]
 
-    assert_equal "The Independence Day", (Holidays.on(Date.civil(2015, 9, 22), [:bg_en])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2015, 3, 31), [:bg_en])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Easter Monday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 3, 31), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :bg_en
 
-    assert_equal "Revival Leader's Day", (Holidays.on(Date.civil(2015, 11, 1), [:bg_en])[0] || {})[:name]
 
-    assert_equal "Christmas Eve", (Holidays.on(Date.civil(2015, 12, 24), [:bg_en])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2015, 5, 1), [:bg_en])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Labour Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 5, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :bg_en
 
-    assert_equal "Christmas", (Holidays.on(Date.civil(2015, 12, 25), [:bg_en])[0] || {})[:name]
 
-    assert_equal "Christmas", (Holidays.on(Date.civil(2015, 12, 26), [:bg_en])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2015, 5, 6), [:bg_en])
+    matching_holiday = holidays.find { |hol| hol[:name] == "St. George's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 5, 6), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :bg_en
+
+
+    holidays = Holidays.on(Date.civil(2015, 5, 24), [:bg_en])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Slavic Literacy Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 5, 24), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :bg_en
+
+
+    holidays = Holidays.on(Date.civil(2015, 9, 6), [:bg_en])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Unification Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 9, 6), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :bg_en
+
+
+    holidays = Holidays.on(Date.civil(2015, 9, 22), [:bg_en])
+    matching_holiday = holidays.find { |hol| hol[:name] == "The Independence Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 9, 22), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :bg_en
+
+
+    holidays = Holidays.on(Date.civil(2015, 11, 1), [:bg_en])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Revival Leader's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 11, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :bg_en
+
+
+    holidays = Holidays.on(Date.civil(2015, 12, 24), [:bg_en])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Christmas Eve" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 12, 24), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :bg_en
+
+
+    holidays = Holidays.on(Date.civil(2015, 12, 25), [:bg_en])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Christmas" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :bg_en
+
+
+    holidays = Holidays.on(Date.civil(2015, 12, 26), [:bg_en])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Christmas" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 12, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :bg_en
+
 
   end
 end

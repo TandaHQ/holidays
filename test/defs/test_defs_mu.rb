@@ -7,13 +7,33 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class MuDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_mu
-    assert_equal "New Year's Day", (Holidays.on(Date.civil(2012, 1, 1), [:mu])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 1, 1), [:mu])
+    matching_holiday = holidays.find { |hol| hol[:name] == "New Year's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mu
 
-    assert_equal "Abolition of Slavery", (Holidays.on(Date.civil(2022, 2, 1), [:mu])[0] || {})[:name]
 
-    assert_equal "Labour Day", (Holidays.on(Date.civil(2023, 5, 1), [:mu])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2022, 2, 1), [:mu])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Abolition of Slavery" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2022, 2, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mu
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2017, 12, 25), [:mu])[0] || {})[:name]
+
+    holidays = Holidays.on(Date.civil(2023, 5, 1), [:mu])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Labour Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2023, 5, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mu
+
+
+    holidays = Holidays.on(Date.civil(2017, 12, 25), [:mu])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Christmas Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2017, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :mu
+
 
   end
 end

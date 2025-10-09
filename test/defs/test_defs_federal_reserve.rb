@@ -7,105 +7,355 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class Federal_reserveDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_federal_reserve
-    assert_equal "New Year's Day", (Holidays.on(Date.civil(2012, 1, 2), [:federal_reserve], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 1, 2), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "New Year's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 1, 2), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
 
-    assert_equal "Birthday of Martin Luther King Jr", (Holidays.on(Date.civil(2012, 1, 16), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Washington's Birthday", (Holidays.on(Date.civil(2012, 2, 20), [:federal_reserve], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 1, 16), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Birthday of Martin Luther King Jr" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 1, 16), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
 
-    assert_equal "Memorial Day", (Holidays.on(Date.civil(2012, 5, 28), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Independence Day", (Holidays.on(Date.civil(2012, 7, 4), [:federal_reserve], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 2, 20), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Washington's Birthday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 2, 20), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
 
-    assert_equal "Labor Day", (Holidays.on(Date.civil(2012, 9, 3), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Columbus Day", (Holidays.on(Date.civil(2012, 10, 8), [:federal_reserve], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 5, 28), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Memorial Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 5, 28), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
 
-    assert_equal "Veterans Day", (Holidays.on(Date.civil(2012, 11, 12), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Thanksgiving Day", (Holidays.on(Date.civil(2012, 11, 22), [:federal_reserve], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 7, 4), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Independence Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 7, 4), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2012, 12, 25), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "New Year's Day", (Holidays.on(Date.civil(2013, 1, 1), [:federal_reserve], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 9, 3), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Labor Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 9, 3), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
 
-    assert_equal "Birthday of Martin Luther King Jr", (Holidays.on(Date.civil(2013, 1, 21), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Washington's Birthday", (Holidays.on(Date.civil(2013, 2, 18), [:federal_reserve], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 10, 8), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Columbus Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 10, 8), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
 
-    assert_equal "Memorial Day", (Holidays.on(Date.civil(2013, 5, 27), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Independence Day", (Holidays.on(Date.civil(2013, 7, 4), [:federal_reserve], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 11, 12), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Veterans Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 11, 12), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
 
-    assert_equal "Labor Day", (Holidays.on(Date.civil(2013, 9, 2), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Columbus Day", (Holidays.on(Date.civil(2013, 10, 14), [:federal_reserve], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 11, 22), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Thanksgiving Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 11, 22), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
 
-    assert_equal "Veterans Day", (Holidays.on(Date.civil(2013, 11, 11), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Thanksgiving Day", (Holidays.on(Date.civil(2013, 11, 28), [:federal_reserve], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 12, 25), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Christmas Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2013, 12, 25), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "New Year's Day", (Holidays.on(Date.civil(2014, 1, 1), [:federal_reserve], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2013, 1, 1), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "New Year's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
 
-    assert_equal "Birthday of Martin Luther King Jr", (Holidays.on(Date.civil(2014, 1, 20), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Washington's Birthday", (Holidays.on(Date.civil(2014, 2, 17), [:federal_reserve], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2013, 1, 21), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Birthday of Martin Luther King Jr" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 1, 21), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
 
-    assert_equal "Memorial Day", (Holidays.on(Date.civil(2014, 5, 26), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Independence Day", (Holidays.on(Date.civil(2014, 7, 4), [:federal_reserve], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2013, 2, 18), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Washington's Birthday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 2, 18), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
 
-    assert_equal "Labor Day", (Holidays.on(Date.civil(2014, 9, 1), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Columbus Day", (Holidays.on(Date.civil(2014, 10, 13), [:federal_reserve], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2013, 5, 27), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Memorial Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 5, 27), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
 
-    assert_equal "Veterans Day", (Holidays.on(Date.civil(2014, 11, 11), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Thanksgiving Day", (Holidays.on(Date.civil(2014, 11, 27), [:federal_reserve], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2013, 7, 4), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Independence Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 7, 4), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2014, 12, 25), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "New Year's Day", (Holidays.on(Date.civil(2015, 1, 1), [:federal_reserve], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2013, 9, 2), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Labor Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 9, 2), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
 
-    assert_equal "Birthday of Martin Luther King Jr", (Holidays.on(Date.civil(2015, 1, 19), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Washington's Birthday", (Holidays.on(Date.civil(2015, 2, 16), [:federal_reserve], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2013, 10, 14), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Columbus Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 10, 14), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
 
-    assert_equal "Memorial Day", (Holidays.on(Date.civil(2015, 5, 25), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Independence Day", (Holidays.on(Date.civil(2015, 7, 4), [:federal_reserve], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2013, 11, 11), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Veterans Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 11, 11), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
 
-    assert_equal "Labor Day", (Holidays.on(Date.civil(2015, 9, 7), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Columbus Day", (Holidays.on(Date.civil(2015, 10, 12), [:federal_reserve], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2013, 11, 28), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Thanksgiving Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 11, 28), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
 
-    assert_equal "Veterans Day", (Holidays.on(Date.civil(2015, 11, 11), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Thanksgiving Day", (Holidays.on(Date.civil(2015, 11, 26), [:federal_reserve], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2013, 12, 25), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Christmas Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2013, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2015, 12, 25), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "New Year's Day", (Holidays.on(Date.civil(2016, 1, 1), [:federal_reserve], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2014, 1, 1), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "New Year's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2014, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
 
-    assert_equal "Birthday of Martin Luther King Jr", (Holidays.on(Date.civil(2016, 1, 18), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Washington's Birthday", (Holidays.on(Date.civil(2016, 2, 15), [:federal_reserve], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2014, 1, 20), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Birthday of Martin Luther King Jr" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2014, 1, 20), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
 
-    assert_equal "Memorial Day", (Holidays.on(Date.civil(2016, 5, 30), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Independence Day", (Holidays.on(Date.civil(2016, 7, 4), [:federal_reserve], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2014, 2, 17), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Washington's Birthday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2014, 2, 17), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
 
-    assert_equal "Labor Day", (Holidays.on(Date.civil(2016, 9, 5), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Columbus Day", (Holidays.on(Date.civil(2016, 10, 10), [:federal_reserve], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2014, 5, 26), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Memorial Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2014, 5, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
 
-    assert_equal "Veterans Day", (Holidays.on(Date.civil(2016, 11, 11), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Thanksgiving Day", (Holidays.on(Date.civil(2016, 11, 24), [:federal_reserve], [:observed])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2014, 7, 4), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Independence Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2014, 7, 4), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2016, 12, 26), [:federal_reserve], [:observed])[0] || {})[:name]
+
+    holidays = Holidays.on(Date.civil(2014, 9, 1), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Labor Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2014, 9, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2014, 10, 13), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Columbus Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2014, 10, 13), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2014, 11, 11), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Veterans Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2014, 11, 11), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2014, 11, 27), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Thanksgiving Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2014, 11, 27), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2014, 12, 25), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Christmas Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2014, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2015, 1, 1), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "New Year's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2015, 1, 19), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Birthday of Martin Luther King Jr" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 1, 19), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2015, 2, 16), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Washington's Birthday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 2, 16), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2015, 5, 25), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Memorial Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 5, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2015, 7, 4), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Independence Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 7, 4), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2015, 9, 7), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Labor Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 9, 7), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2015, 10, 12), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Columbus Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 10, 12), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2015, 11, 11), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Veterans Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 11, 11), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2015, 11, 26), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Thanksgiving Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 11, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2015, 12, 25), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Christmas Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2015, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2016, 1, 1), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "New Year's Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2016, 1, 18), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Birthday of Martin Luther King Jr" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 1, 18), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2016, 2, 15), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Washington's Birthday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 2, 15), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2016, 5, 30), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Memorial Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 5, 30), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2016, 7, 4), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Independence Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 7, 4), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2016, 9, 5), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Labor Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 9, 5), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2016, 10, 10), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Columbus Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 10, 10), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2016, 11, 11), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Veterans Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 11, 11), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2016, 11, 24), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Thanksgiving Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 11, 24), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2016, 12, 26), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Christmas Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2016, 12, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
 
   end
 end

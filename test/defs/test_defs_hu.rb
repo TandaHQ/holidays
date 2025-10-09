@@ -7,31 +7,96 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class HuDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_hu
-    assert_equal "Újév", (Holidays.on(Date.civil(2012, 1, 1), [:hu], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 1, 1), [:hu], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Újév" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :hu
 
-    assert_equal "Újév", (Holidays.on(Date.civil(2011, 1, 1), [:hu], [:informal])[0] || {})[:name]
 
-    assert_equal "1848/49-es forradalom és szabadságharc ünnepe", (Holidays.on(Date.civil(2012, 3, 15), [:hu], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2011, 1, 1), [:hu], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Újév" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2011, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :hu
 
-    assert_equal "Húsvét hétfő", (Holidays.on(Date.civil(2011, 4, 25), [:hu], [:informal])[0] || {})[:name]
 
-    assert_equal "Húsvét hétfő", (Holidays.on(Date.civil(2012, 4, 9), [:hu], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 3, 15), [:hu], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "1848/49-es forradalom és szabadságharc ünnepe" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 3, 15), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :hu
 
-    assert_equal "A munka ünnepe", (Holidays.on(Date.civil(2012, 5, 1), [:hu], [:informal])[0] || {})[:name]
 
-    assert_equal "Pünkösd hétfő", (Holidays.on(Date.civil(2011, 6, 13), [:hu], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2011, 4, 25), [:hu], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Húsvét hétfő" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2011, 4, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :hu
 
-    assert_equal "Pünkösd hétfő", (Holidays.on(Date.civil(2012, 5, 28), [:hu], [:informal])[0] || {})[:name]
 
-    assert_equal "Az államalapítás ünnepe", (Holidays.on(Date.civil(2012, 8, 20), [:hu], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 4, 9), [:hu], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Húsvét hétfő" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 4, 9), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :hu
 
-    assert_equal "1956-os forradalom és szabadságharc ünnepe", (Holidays.on(Date.civil(2012, 10, 23), [:hu], [:informal])[0] || {})[:name]
 
-    assert_equal "Mindenszentek", (Holidays.on(Date.civil(2012, 11, 1), [:hu], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2012, 5, 1), [:hu], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "A munka ünnepe" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 5, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :hu
 
-    assert_equal "Karácsony", (Holidays.on(Date.civil(2012, 12, 25), [:hu], [:informal])[0] || {})[:name]
 
-    assert_equal "Karácsony", (Holidays.on(Date.civil(2012, 12, 26), [:hu], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2011, 6, 13), [:hu], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Pünkösd hétfő" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2011, 6, 13), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :hu
+
+
+    holidays = Holidays.on(Date.civil(2012, 5, 28), [:hu], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Pünkösd hétfő" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 5, 28), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :hu
+
+
+    holidays = Holidays.on(Date.civil(2012, 8, 20), [:hu], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Az államalapítás ünnepe" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 8, 20), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :hu
+
+
+    holidays = Holidays.on(Date.civil(2012, 10, 23), [:hu], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "1956-os forradalom és szabadságharc ünnepe" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 10, 23), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :hu
+
+
+    holidays = Holidays.on(Date.civil(2012, 11, 1), [:hu], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Mindenszentek" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 11, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :hu
+
+
+    holidays = Holidays.on(Date.civil(2012, 12, 25), [:hu], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Karácsony" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :hu
+
+
+    holidays = Holidays.on(Date.civil(2012, 12, 26), [:hu], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Karácsony" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 12, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :hu
+
 
     assert_nil (Holidays.on(Date.civil(2012, 3, 14), [:hu])[0] || {})[:name]
 

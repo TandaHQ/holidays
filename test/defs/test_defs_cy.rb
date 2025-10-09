@@ -7,39 +7,124 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class CyDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_cy
-    assert_equal "Εθνική Ημέρα της Κύπρου", (Holidays.on(Date.civil(2023, 4, 1), [:cy], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2023, 4, 1), [:cy], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Εθνική Ημέρα της Κύπρου" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2023, 4, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :cy
 
-    assert_equal "Ημέρα Ανεξαρτησίας", (Holidays.on(Date.civil(2023, 10, 1), [:cy], [:informal])[0] || {})[:name]
 
-    assert_equal "Πρωτοχρονιά", (Holidays.on(Date.civil(2011, 1, 1), [:cy], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2023, 10, 1), [:cy], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Ημέρα Ανεξαρτησίας" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2023, 10, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :cy
 
-    assert_equal "Θεοφάνεια", (Holidays.on(Date.civil(2011, 1, 6), [:cy], [:informal])[0] || {})[:name]
 
-    assert_equal "Μεγάλη Παρασκευή", (Holidays.on(Date.civil(2011, 4, 22), [:cy], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2011, 1, 1), [:cy], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Πρωτοχρονιά" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2011, 1, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :cy
 
-    assert_equal "Μεγάλο Σάββατο", (Holidays.on(Date.civil(1970, 4, 25), [:cy], [:informal])[0] || {})[:name]
 
-    assert_equal "Κυριακή του Πάσχα", (Holidays.on(Date.civil(1985, 4, 14), [:cy], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2011, 1, 6), [:cy], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Θεοφάνεια" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2011, 1, 6), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :cy
 
-    assert_equal "Κυριακή του Πάσχα", (Holidays.on(Date.civil(2011, 4, 24), [:cy], [:informal])[0] || {})[:name]
 
-    assert_equal "Κυριακή του Πάσχα", (Holidays.on(Date.civil(2027, 5, 2), [:cy], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2011, 4, 22), [:cy], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Μεγάλη Παρασκευή" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2011, 4, 22), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :cy
 
-    assert_equal "Δευτέρα του Πάσχα", (Holidays.on(Date.civil(2046, 4, 30), [:cy], [:informal])[0] || {})[:name]
 
-    assert_equal "Πρωτομαγιά", (Holidays.on(Date.civil(2011, 5, 1), [:cy], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(1970, 4, 25), [:cy], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Μεγάλο Σάββατο" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(1970, 4, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :cy
 
-    assert_equal "Αγίου Πνεύματος", (Holidays.on(Date.civil(2011, 6, 13), [:cy], [:informal])[0] || {})[:name]
 
-    assert_equal "Αγίου Πνεύματος", (Holidays.on(Date.civil(2012, 6, 4), [:cy], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(1985, 4, 14), [:cy], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Κυριακή του Πάσχα" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(1985, 4, 14), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :cy
 
-    assert_equal "Καθαρά Δευτέρα", (Holidays.on(Date.civil(2011, 3, 7), [:cy], [:informal])[0] || {})[:name]
 
-    assert_equal "Καθαρά Δευτέρα", (Holidays.on(Date.civil(2012, 2, 27), [:cy], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2011, 4, 24), [:cy], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Κυριακή του Πάσχα" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2011, 4, 24), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :cy
 
-    assert_equal "Χριστούγεννα", (Holidays.on(Date.civil(2011, 12, 25), [:cy], [:informal])[0] || {})[:name]
 
-    assert_equal "Δεύτερη ημέρα των Χριστουγέννων", (Holidays.on(Date.civil(2011, 12, 26), [:cy], [:informal])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2027, 5, 2), [:cy], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Κυριακή του Πάσχα" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2027, 5, 2), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :cy
+
+
+    holidays = Holidays.on(Date.civil(2046, 4, 30), [:cy], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Δευτέρα του Πάσχα" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2046, 4, 30), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :cy
+
+
+    holidays = Holidays.on(Date.civil(2011, 5, 1), [:cy], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Πρωτομαγιά" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2011, 5, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :cy
+
+
+    holidays = Holidays.on(Date.civil(2011, 6, 13), [:cy], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Αγίου Πνεύματος" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2011, 6, 13), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :cy
+
+
+    holidays = Holidays.on(Date.civil(2012, 6, 4), [:cy], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Αγίου Πνεύματος" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 6, 4), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :cy
+
+
+    holidays = Holidays.on(Date.civil(2011, 3, 7), [:cy], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Καθαρά Δευτέρα" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2011, 3, 7), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :cy
+
+
+    holidays = Holidays.on(Date.civil(2012, 2, 27), [:cy], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Καθαρά Δευτέρα" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2012, 2, 27), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :cy
+
+
+    holidays = Holidays.on(Date.civil(2011, 12, 25), [:cy], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Χριστούγεννα" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2011, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :cy
+
+
+    holidays = Holidays.on(Date.civil(2011, 12, 26), [:cy], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Δεύτερη ημέρα των Χριστουγέννων" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2011, 12, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :cy
+
 
   end
 end
