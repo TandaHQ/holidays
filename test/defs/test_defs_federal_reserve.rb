@@ -357,5 +357,26 @@ class Federal_reserveDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_includes matching_holiday[:regions], :federal_reserve
 
 
+    holidays = Holidays.on(Date.civil(2022, 6, 20), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Juneteenth National Independence Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2022, 6, 20), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2023, 6, 19), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Juneteenth National Independence Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2023, 6, 19), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
+    holidays = Holidays.on(Date.civil(2024, 6, 19), [:federal_reserve], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Juneteenth National Independence Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2024, 6, 19), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :federal_reserve
+
+
   end
 end
