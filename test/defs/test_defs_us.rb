@@ -759,10 +759,42 @@ class UsDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_includes matching_holiday[:regions], :us_va
 
 
+    holidays = Holidays.on(Date.civil(2020, 7, 3), [:us], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Independence Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2020, 7, 3), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :us
+
+    holidays = Holidays.on(Date.civil(2021, 7, 5), [:us], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Independence Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2021, 7, 5), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :us
+
+    holidays = Holidays.on(Date.civil(2026, 7, 3), [:us], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Independence Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2026, 7, 3), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :us
+
+
     holidays = Holidays.on(Date.civil(2020, 7, 24), [:us_ut])
     matching_holiday = holidays.find { |hol| hol[:name] == "Pioneer Day" }
     assert_not_nil matching_holiday
     assert_equal Date.civil(2020, 7, 24), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :us_ut
+
+
+    holidays = Holidays.on(Date.civil(2021, 7, 23), [:us_ut], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Pioneer Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2021, 7, 23), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :us_ut
+
+    holidays = Holidays.on(Date.civil(2022, 7, 25), [:us_ut], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Pioneer Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2022, 7, 25), matching_holiday[:date]
     assert_includes matching_holiday[:regions], :us_ut
 
 
