@@ -175,5 +175,31 @@ class NzDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_includes matching_holiday[:regions], :nz_ta
 
 
+    holidays = Holidays.on(Date.civil(2021, 6, 7), [:nz])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Queen's Birthday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2021, 6, 7), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nz
+
+    holidays = Holidays.on(Date.civil(2022, 6, 6), [:nz])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Queen's Birthday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2022, 6, 6), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nz
+
+
+    holidays = Holidays.on(Date.civil(2023, 6, 5), [:nz])
+    matching_holiday = holidays.find { |hol| hol[:name] == "King's Birthday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2023, 6, 5), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nz
+
+    holidays = Holidays.on(Date.civil(2024, 6, 3), [:nz])
+    matching_holiday = holidays.find { |hol| hol[:name] == "King's Birthday" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2024, 6, 3), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :nz
+
+
   end
 end
