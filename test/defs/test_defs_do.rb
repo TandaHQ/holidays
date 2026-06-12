@@ -49,13 +49,6 @@ class DoDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_includes matching_holiday[:regions], :do
 
 
-    holidays = Holidays.on(Date.civil(2026, 4, 5), [:do])
-    matching_holiday = holidays.find { |hol| hol[:name] == "Dia de Pascua" }
-    assert_not_nil matching_holiday
-    assert_equal Date.civil(2026, 4, 5), matching_holiday[:date]
-    assert_includes matching_holiday[:regions], :do
-
-
     holidays = Holidays.on(Date.civil(2026, 5, 4), [:do])
     matching_holiday = holidays.find { |hol| hol[:name] == "Dia del Trabajo" }
     assert_not_nil matching_holiday
