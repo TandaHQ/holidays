@@ -108,6 +108,8 @@ when 2024
   Date.civil(2024, 9, 27)
 when 2025
   Date.civil(2025, 9, 26)
+when 2026
+  Date.civil(2026, 9, 25)
 end
 },
 
