@@ -81,13 +81,17 @@ module Holidays
         # its definitions. Other files can contribute a handful of holidays to it
         # (ca.rb and mx.rb both list :us, for example), which marks the region as
         # loaded without ever opening the file that actually defines it.
+        #
+        # A region with no owner has no file behind it at all: either it arrived
+        # through load_custom, in which case the loaded flag is all we have to go
+        # on, or it does not exist and loading it raises.
         def load_definitions_for!(region)
-          definition = @regions_repo.parent_region_lookup(region)
+          owner = @regions_repo.parent_region_lookup(region)
 
-          if definition.nil?
+          if owner.nil?
             load_region!(region) unless @regions_repo.loaded?(region)
           else
-            load_region!(definition) unless @regions_repo.definitions_loaded?(definition)
+            load_region!(owner) unless @regions_repo.definitions_loaded?(owner)
           end
         end
 

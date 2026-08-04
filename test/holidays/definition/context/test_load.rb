@@ -28,15 +28,9 @@ class LoadTests < Test::Unit::TestCase
     @subject.call(:test_region)
   end
 
-  def test_does_not_record_the_region_if_the_definition_file_is_missing
+  def test_region_file_not_found
     @regions_repo.expects(:add_definitions).never
 
-    assert_raises Holidays::UnknownRegionError do
-      @subject.call(:unknown)
-    end
-  end
-
-  def test_region_file_not_found
     assert_raises Holidays::UnknownRegionError do
       @subject.call(:unknown)
     end
