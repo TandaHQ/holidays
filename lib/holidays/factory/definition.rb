@@ -111,6 +111,7 @@ module Holidays
         def loader
           Holidays::Definition::Context::Load.new(
             merger,
+            regions_repository,
             Holidays::FULL_DEFINITIONS_PATH,
           )
         end

@@ -2,8 +2,9 @@ module Holidays
   module Definition
     module Context
       class Load
-        def initialize(definition_merger, full_definitions_path)
+        def initialize(definition_merger, regions_repo, full_definitions_path)
           @definition_merger = definition_merger
+          @regions_repo = regions_repo
           @full_definitions_path = full_definitions_path
         end
 
@@ -18,6 +19,8 @@ module Holidays
             target_region_module.holidays_by_month,
             target_region_module.custom_methods,
           )
+
+          @regions_repo.add_definitions(region)
 
           target_region_module.defined_regions
         rescue  NameError, LoadError => e

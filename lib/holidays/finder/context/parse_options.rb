@@ -50,14 +50,7 @@ module Holidays
 
           if regions.include?(:any)
             @regions_repo.all_generated.each do |r|
-              if @regions_repo.loaded?(r)
-                loaded_regions << r
-                next
-              end
-
-              target = @regions_repo.parent_region_lookup(r)
-              load_region!(target)
-
+              load_definitions_for!(r)
               loaded_regions << r
             end
           else
@@ -65,15 +58,7 @@ module Holidays
               if is_wildcard?(r)
                 loaded_regions << load_wildcard_parent!(r)
               else
-                if @regions_repo.loaded?(r)
-                  loaded_regions << r
-                  next
-                end
-
-                parent = @regions_repo.parent_region_lookup(r)
-
-                load_region!(parent || r)
-
+                load_definitions_for!(r)
                 loaded_regions << r
               end
             end
@@ -90,6 +75,20 @@ module Holidays
 
         def is_wildcard?(r)
           r.to_s =~ /_$/
+        end
+
+        # The file that owns a region is the only one guaranteed to hold all of
+        # its definitions. Other files can contribute a handful of holidays to it
+        # (ca.rb and mx.rb both list :us, for example), which marks the region as
+        # loaded without ever opening the file that actually defines it.
+        def load_definitions_for!(region)
+          definition = @regions_repo.parent_region_lookup(region)
+
+          if definition.nil?
+            load_region!(region) unless @regions_repo.loaded?(region)
+          else
+            load_region!(definition) unless @regions_repo.definitions_loaded?(definition)
+          end
         end
 
         def load_wildcard_parent!(wildcard_region)

@@ -6,6 +6,7 @@ class ParseOptionsTests < Test::Unit::TestCase
   def setup
     @regions_repo = mock()
     @regions_repo.stubs(:loaded?).returns(false)
+    @regions_repo.stubs(:definitions_loaded?).returns(false)
 
     @region_validator = mock()
     @region_validator.stubs(:valid?).returns(true)
@@ -68,6 +69,7 @@ class ParseOptionsTests < Test::Unit::TestCase
   end
 
   def test_does_nothing_if_region_is_already_loaded_and_is_parent_but_is_custom
+    @regions_repo.expects(:parent_region_lookup).with(:custom_region).returns(nil)
     @regions_repo.expects(:loaded?).with(:custom_region).returns(true)
 
     regions = @subject.call([:custom_region]).first
@@ -75,26 +77,37 @@ class ParseOptionsTests < Test::Unit::TestCase
   end
 
   def test_has_parent_loads_parent_region
-    @regions_repo.expects(:loaded?).with(:subregion).returns(false)
     @regions_repo.expects(:parent_region_lookup).with(:subregion).returns(:parent)
+    @regions_repo.expects(:definitions_loaded?).with(:parent).returns(false)
     @definition_loader.expects(:call).with(:parent).returns([:parent, :subregion])
 
     regions = @subject.call([:subregion]).first
     assert_equal([:subregion], regions)
   end
 
-  def test_subregion_already_loaded_does_not_load_again
-    @regions_repo.expects(:loaded?).with(:subregion).returns(true)
+  def test_has_parent_already_loaded_does_not_load_again
+    @regions_repo.expects(:parent_region_lookup).with(:subregion).returns(:parent)
+    @regions_repo.expects(:definitions_loaded?).with(:parent).returns(true)
     @definition_loader.expects(:call).never
 
     regions = @subject.call([:subregion]).first
     assert_equal([:subregion], regions)
   end
 
-  def test_subregion_loads_parent_even_when_parent_is_already_loaded
-    @regions_repo.stubs(:loaded?).with(:parent).returns(true)
-    @regions_repo.expects(:loaded?).with(:subregion).returns(false)
+  def test_loads_region_whose_definitions_another_file_has_already_claimed
+    @regions_repo.expects(:parent_region_lookup).with(:region).returns(:region)
+    @regions_repo.stubs(:loaded?).with(:region).returns(true)
+    @regions_repo.expects(:definitions_loaded?).with(:region).returns(false)
+    @definition_loader.expects(:call).with(:region).returns([:region])
+
+    regions = @subject.call([:region]).first
+    assert_equal([:region], regions)
+  end
+
+  def test_loads_parent_whose_definitions_another_file_has_already_claimed
     @regions_repo.expects(:parent_region_lookup).with(:subregion).returns(:parent)
+    @regions_repo.stubs(:loaded?).with(:subregion).returns(true)
+    @regions_repo.expects(:definitions_loaded?).with(:parent).returns(false)
     @definition_loader.expects(:call).with(:parent).returns([:parent, :subregion])
 
     regions = @subject.call([:subregion]).first
@@ -117,8 +130,8 @@ class ParseOptionsTests < Test::Unit::TestCase
   end
 
   def test_region_with_multiple_underscores_load_correctly
-    @regions_repo.expects(:loaded?).with(:subregion_with_underscores).returns(false)
     @regions_repo.expects(:parent_region_lookup).with(:subregion_with_underscores).returns(:parent)
+    @regions_repo.expects(:definitions_loaded?).with(:parent).returns(false)
     @definition_loader.expects(:call).with(:parent).returns([:parent, :subregion_with_underscores])
 
     regions = @subject.call([:subregion_with_underscores]).first
@@ -127,10 +140,10 @@ class ParseOptionsTests < Test::Unit::TestCase
 
   def test_blank_region_should_load_all_regions_available
     @regions_repo.expects(:all_generated).returns([:region1, :region2])
-    @regions_repo.expects(:loaded?).with(:region1).returns(false)
-    @regions_repo.expects(:loaded?).with(:region2).returns(true)
-    @regions_repo.expects(:parent_region_lookup).with(:region1).returns(:region2)
-    @definition_loader.expects(:call).with(:region2)
+    @regions_repo.stubs(:parent_region_lookup).with(:region1).returns(:region2)
+    @regions_repo.stubs(:parent_region_lookup).with(:region2).returns(:region2)
+    @regions_repo.stubs(:definitions_loaded?).with(:region2).returns(false).then.returns(true)
+    @definition_loader.expects(:call).with(:region2).once
 
     regions = @subject.call.first
     assert_equal([:region1, :region2], regions)
@@ -138,10 +151,10 @@ class ParseOptionsTests < Test::Unit::TestCase
 
   def test_special_any_region_should_load_all_regions_available
     @regions_repo.expects(:all_generated).returns([:region1, :region2])
-    @regions_repo.expects(:loaded?).with(:region1).returns(false)
-    @regions_repo.expects(:loaded?).with(:region2).returns(true)
-    @regions_repo.expects(:parent_region_lookup).with(:region1).returns(:region2)
-    @definition_loader.expects(:call).with(:region2)
+    @regions_repo.stubs(:parent_region_lookup).with(:region1).returns(:region2)
+    @regions_repo.stubs(:parent_region_lookup).with(:region2).returns(:region2)
+    @regions_repo.stubs(:definitions_loaded?).with(:region2).returns(false).then.returns(true)
+    @definition_loader.expects(:call).with(:region2).once
 
     regions = @subject.call(:any).first
     assert_equal([:region1, :region2], regions)

@@ -66,6 +66,50 @@ class RegionsRepoTests < Test::Unit::TestCase
     end
   end
 
+  def test_all_definitions_loaded_returns_an_empty_array_if_just_initialize
+    assert_equal([], @subject.all_definitions_loaded)
+  end
+
+  def test_add_definitions_successfully_records_a_region
+    @subject.add_definitions(:parent)
+    assert_equal([:parent], @subject.all_definitions_loaded)
+  end
+
+  def test_add_definitions_does_not_record_the_same_region_twice
+    @subject.add_definitions(:parent)
+    @subject.add_definitions(:parent)
+    assert_equal([:parent], @subject.all_definitions_loaded)
+  end
+
+  def test_add_definitions_raises_error_if_symbol_not_provided
+    assert_raises ArgumentError do
+      @subject.add_definitions('not-a-symbol')
+    end
+  end
+
+  def test_definitions_loaded_returns_true_once_the_region_has_been_recorded
+    @subject.add_definitions(:parent)
+    assert @subject.definitions_loaded?(:parent)
+  end
+
+  def test_definitions_loaded_returns_false_if_the_region_has_not_been_recorded
+    assert_equal(false, @subject.definitions_loaded?(:parent))
+  end
+
+  def test_definitions_loaded_ignores_regions_contributed_by_another_definition_file
+    @subject.add_definitions(:parent)
+    @subject.add([:parent, :region1])
+
+    assert @subject.loaded?(:region1)
+    assert_equal(false, @subject.definitions_loaded?(:region1))
+  end
+
+  def test_definitions_loaded_raises_error_if_invalid_argument
+    assert_raises ArgumentError do
+      @subject.definitions_loaded?(nil)
+    end
+  end
+
   def test_search_returns_empty_array_if_no_matches_found
     assert_equal([], @subject.search(:something))
   end

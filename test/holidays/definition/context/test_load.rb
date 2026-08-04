@@ -5,10 +5,13 @@ require 'holidays/definition/context/load'
 class LoadTests < Test::Unit::TestCase
   def setup
     @definition_merger = mock()
+    @regions_repo = mock()
+    @regions_repo.stubs(:add_definitions)
     full_definitions_path = File.expand_path(File.dirname(__FILE__)) + '/../../../data'
 
     @subject = Holidays::Definition::Context::Load.new(
       @definition_merger,
+      @regions_repo,
       full_definitions_path,
     )
   end
@@ -16,6 +19,21 @@ class LoadTests < Test::Unit::TestCase
   def test_region_is_found_and_loaded_and_merged
     @definition_merger.expects(:call).with([:test_region, :test_region2], {}, {})
     @subject.call(:test_region)
+  end
+
+  def test_records_the_region_whose_definition_file_was_loaded
+    @definition_merger.expects(:call).with([:test_region, :test_region2], {}, {})
+    @regions_repo.expects(:add_definitions).with(:test_region)
+
+    @subject.call(:test_region)
+  end
+
+  def test_does_not_record_the_region_if_the_definition_file_is_missing
+    @regions_repo.expects(:add_definitions).never
+
+    assert_raises Holidays::UnknownRegionError do
+      @subject.call(:unknown)
+    end
   end
 
   def test_region_file_not_found
