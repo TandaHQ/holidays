@@ -65,16 +65,14 @@ module Holidays
               if is_wildcard?(r)
                 loaded_regions << load_wildcard_parent!(r)
               else
-                parent = @regions_repo.parent_region_lookup(r)
-
-                target = parent || r
-
-                if @regions_repo.loaded?(target)
+                if @regions_repo.loaded?(r)
                   loaded_regions << r
                   next
                 end
 
-                load_region!(target)
+                parent = @regions_repo.parent_region_lookup(r)
+
+                load_region!(parent || r)
 
                 loaded_regions << r
               end
