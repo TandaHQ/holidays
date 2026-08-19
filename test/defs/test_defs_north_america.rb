@@ -676,6 +676,54 @@ class North_americaDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_includes matching_holiday[:regions], :ca_yt
 
 
+    holidays = Holidays.on(Date.civil(2026, 9, 30), [:ca_bc, :ca_pe])
+    matching_holiday = holidays.find { |hol| hol[:name] == "National Day for Truth and Reconciliation" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2026, 9, 30), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ca_bc
+    assert_includes matching_holiday[:regions], :ca_pe
+
+
+    holidays = Holidays.on(Date.civil(2027, 9, 30), [:ca_bc, :ca_pe])
+    matching_holiday = holidays.find { |hol| hol[:name] == "National Day for Truth and Reconciliation" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2027, 9, 30), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ca_bc
+    assert_includes matching_holiday[:regions], :ca_pe
+
+
+    holidays = Holidays.on(Date.civil(2026, 9, 30), [:ca_ab, :ca_mb], [:informal])
+    matching_holiday = holidays.find { |hol| hol[:name] == "National Day for Truth and Reconciliation" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2026, 9, 30), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ca_ab
+    assert_includes matching_holiday[:regions], :ca_mb
+
+
+    assert_nil (Holidays.on(Date.civil(2026, 9, 30), [:ca_ab, :ca_mb])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2025, 9, 30), [:ca_bc, :ca_pe])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2023, 10, 2), [:ca_bc, :ca_pe], [:observed])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2026, 9, 30), [:ca_on, :ca_qc, :ca_ns, :ca_nb, :ca_nl, :ca_sk], [:informal])[0] || {})[:name]
+
+    holidays = Holidays.on(Date.civil(2028, 10, 2), [:ca_bc, :ca_pe], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "National Day for Truth and Reconciliation" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2028, 10, 2), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ca_bc
+    assert_includes matching_holiday[:regions], :ca_pe
+
+
+    holidays = Holidays.on(Date.civil(2029, 10, 1), [:ca_bc, :ca_pe], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "National Day for Truth and Reconciliation" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2029, 10, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :ca_bc
+    assert_includes matching_holiday[:regions], :ca_pe
+
+
     holidays = Holidays.on(Date.civil(2007, 1, 1), [:mx], [:informal])
     matching_holiday = holidays.find { |hol| hol[:name] == "Año nuevo" }
     assert_not_nil matching_holiday
