@@ -95,6 +95,8 @@ module Holidays
             {:wday => 5, :week => 3, :name => "Statehood Day", :regions => [:us_hi]},
             {:mday => 27, :name => "Lyndon Baines Johnson Day", :regions => [:us_tx]}],
       9 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:ca]},
+            {:mday => 30,  :year_ranges => [{:after => 2026}],:observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "National Day for Truth and Reconciliation", :regions => [:ca_bc, :ca_pe]},
+            {:mday => 30,  :year_ranges => [{:after => 2026}],:observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :type => :informal, :name => "National Day for Truth and Reconciliation", :regions => [:ca_ab, :ca_mb]},
             {:mday => 15, :name => "Grito de Dolores", :regions => [:mx]},
             {:mday => 16, :name => "Día de la Independencia", :regions => [:mx]},
             {:wday => 1, :week => 1, :name => "Labor Day", :regions => [:us]},
