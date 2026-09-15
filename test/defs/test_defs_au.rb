@@ -939,6 +939,34 @@ class AuDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_nil (Holidays.on(Date.civil(2021, 12, 25), [:au_sa])[0] || {})[:name]
 
+    holidays = Holidays.on(Date.civil(2021, 12, 27), [:au_sa])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Christmas Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2021, 12, 27), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :au_sa
+
+
+    holidays = Holidays.on(Date.civil(2022, 12, 26), [:au_sa])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Additional public holiday for Christmas Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2022, 12, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :au_sa
+
+
+    holidays = Holidays.on(Date.civil(2027, 12, 25), [:au_sa])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Christmas Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2027, 12, 25), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :au_sa
+
+
+    holidays = Holidays.on(Date.civil(2027, 12, 27), [:au_sa])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Additional public holiday for Christmas Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2027, 12, 27), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :au_sa
+
+
     holidays = Holidays.on(Date.civil(2022, 12, 25), [:au_sa])
     matching_holiday = holidays.find { |hol| hol[:name] == "Christmas Day" }
     assert_not_nil matching_holiday
