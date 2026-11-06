@@ -56,6 +56,8 @@ module Holidays
                   date = Date.civil(year, current_month, current_day)
                 rescue; next; end
 
+                original_date = date
+
                 if observed_set?(options) && h[:observed]
                   date = @custom_method_processor.call(
                     build_custom_method_input(date.year, date.month, date.day, regions),
@@ -64,7 +66,9 @@ module Holidays
                   )
                 end
 
-                holidays << {:date => date, :name => h[:name], :regions => h[:regions]}
+                holiday = {:date => date, :name => h[:name], :regions => h[:regions]}
+                holiday[:observed_from] = original_date if date && date != original_date
+                holidays << holiday
               end
             end
           end

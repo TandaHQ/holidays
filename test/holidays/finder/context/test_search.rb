@@ -177,8 +177,42 @@ class FinderSearchTests < Test::Unit::TestCase
         :date => Date.civil(2015, 10, 1),
         :name => "Test",
         :regions => [:us],
+        :observed_from => Date.civil(2015, 1, 8),
       }],
       @subject.call(@dates_driver, @regions, [:observed])
+    )
+  end
+
+  def test_omits_observed_from_if_observed_function_does_not_move_the_date
+    @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns([:mday => 8, :name => "Test", :observed => "SOME_OBSERVED_FUNC_ID", :regions=>@regions])
+
+    @custom_method_processor.expects(:call).with(
+      {:year => 2015, :month => 1, :day => 8, :region => :us},
+      "SOME_OBSERVED_FUNC_ID",
+      [:date],
+    ).returns(Date.civil(2015, 1, 8))
+
+    assert_equal(
+      [{
+        :date => Date.civil(2015, 1, 8),
+        :name => "Test",
+        :regions => [:us],
+      }],
+      @subject.call(@dates_driver, @regions, [:observed])
+    )
+  end
+
+  def test_omits_observed_from_if_observed_flag_not_set
+    @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns([:mday => 8, :name => "Test", :observed => "SOME_OBSERVED_FUNC_ID", :regions=>@regions])
+    @custom_method_processor.expects(:call).never
+
+    assert_equal(
+      [{
+        :date => Date.civil(2015, 1, 8),
+        :name => "Test",
+        :regions => [:us],
+      }],
+      @subject.call(@dates_driver, @regions, @options)
     )
   end
 
