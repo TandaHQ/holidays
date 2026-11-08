@@ -67,7 +67,7 @@ module Holidays
                 end
 
                 holiday = {:date => date, :name => h[:name], :regions => h[:regions]}
-                holiday[:observed_from] = original_date if date && date != original_date
+                holiday[:observed_from] = original_date if date != original_date
                 holidays << holiday
               end
             end
