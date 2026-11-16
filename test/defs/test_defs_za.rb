@@ -91,5 +91,32 @@ class ZaDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_includes matching_holiday[:regions], :za
 
 
+    holidays = Holidays.on(Date.civil(2026, 12, 26), [:za], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Day of Goodwill" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2026, 12, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :za
+
+
+    assert_nil (Holidays.on(Date.civil(2026, 12, 28), [:za], [:observed])[0] || {})[:name]
+
+    holidays = Holidays.on(Date.civil(2027, 12, 27), [:za], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Day of Goodwill" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2027, 12, 27), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :za
+
+
+    assert_nil (Holidays.on(Date.civil(2027, 12, 28), [:za], [:observed])[0] || {})[:name]
+
+    holidays = Holidays.on(Date.civil(2022, 12, 26), [:za], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Day of Goodwill" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2022, 12, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :za
+
+
+    assert_nil (Holidays.on(Date.civil(2022, 12, 27), [:za], [:observed])[0] || {})[:name]
+
   end
 end
